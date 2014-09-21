@@ -7,7 +7,7 @@ require 'csv'
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 admin = User.create(email: 'herman@hiddema.nl', password: 'brood123#')
-admin.confirm!
+#admin.confirm!
 season = Season.create(name: 'Najaar 2014')
 groningen = Club.create(name: 'Groningen', abbrev: 'Gron')
 Venue.create(name: 'Zwolle', club: groningen, playing_day: 3, playing_time: '20:00')
