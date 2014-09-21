@@ -16,6 +16,7 @@ gem 'font-awesome-rails'
 gem 'country_select'
 gem 'devise'
 gem 'devise-i18n'
+gem 'rails_12factor'
 
 group :doc do
   gem 'sdoc', require: false
