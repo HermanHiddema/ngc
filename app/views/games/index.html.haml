@@ -1,0 +1,29 @@
+%h1 Listing games
+
+%table
+  %tr
+    %th Match
+    %th Black
+    %th White
+    %th Black points
+    %th White points
+    %th Reason
+    %th
+    %th
+    %th
+
+  - @games.each do |game|
+    %tr
+      %td= game.match
+      %td= game.black
+      %td= game.white
+      %td= game.black_points
+      %td= game.white_points
+      %td= game.reason
+      %td= link_to 'Show', game
+      %td= link_to 'Edit', edit_game_path(game)
+      %td= link_to 'Destroy', game, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Game', new_game_path

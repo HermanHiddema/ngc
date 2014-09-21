@@ -1,0 +1,13 @@
+= simple_form_for(@game) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :match
+    = f.association :black
+    = f.association :white
+    = f.input :black_points
+    = f.input :white_points
+    = f.input :reason
+
+  .form-actions
+    = f.button :submit

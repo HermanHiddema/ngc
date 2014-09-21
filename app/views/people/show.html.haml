@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Firstname:
+  = @person.firstname
+%p
+  %b Lastname:
+  = @person.lastname
+%p
+  %b Egd pin:
+  = @person.egd_pin
+%p
+  %b Email:
+  = @person.email
+
+= link_to 'Edit', edit_person_path(@person)
+\|
+= link_to 'Back', people_path

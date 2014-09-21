@@ -1,0 +1,28 @@
+%h1 Team #{team.name}
+%p
+	%b Captain:
+	= team.captain_name
+	-if team.captain.email
+		%br
+		%b Email:
+		= team.captain.email
+		-if team.captain.email2
+			of #{team.captain.email2}
+	-if team.captain.phone
+		%br
+		%b Telefoon:
+		= team.captain.phone
+		-if team.captain.phone2
+			of #{team.captain.phone2}
+	%br
+	%b Club:
+	= link_to team.club.name, team.club
+	%br
+	%b Poule:
+	= link_to team.league.name, team.league
+
+%h3 Teamleden
+%p
+	- team.team_members.each_with_index do |member, index|
+		.member
+			#{index+1}. #{member.firstname} #{member.lastname} (#{member.rating})

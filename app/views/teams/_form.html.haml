@@ -1,0 +1,12 @@
+.form_inputs
+	= f.input :name
+	= f.input :abbrev
+	= f.association :club, collection: Club.order(:name)
+	= f.association :league
+	= f.simple_fields_for :team_members, @members do |m|
+		.row
+			.small-2.columns
+				= m.input :id, as: :hidden
+				= m.input :board_number
+			.small-10.columns
+				= m.association :participant, collection: Participant.order(:firstname, :lastname)

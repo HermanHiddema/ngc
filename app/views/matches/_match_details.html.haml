@@ -1,0 +1,11 @@
+= match.played? ? 'Gespeeld' : 'Gepland'
+#{l match.playing_date, format: :short} te
+= link_to match.venue.name, match.venue
+%table
+	%tr
+		%th Bord
+		%th{colspan:5} #{match.black_team.name}
+		%th{colspan:5} #{match.white_team.name}
+		%th #{match.result}
+	= render match.games.order(:board_number)
+

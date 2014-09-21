@@ -1,0 +1,11 @@
+= simple_form_for(@person) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :firstname
+    = f.input :lastname
+    = f.input :egd_pin
+    = f.input :email
+
+  .form-actions
+    = f.button :submit

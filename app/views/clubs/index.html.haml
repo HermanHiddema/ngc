@@ -1,0 +1,21 @@
+%h1 Clubs
+
+%table
+  %tr
+    %th{colspan:3} Naam
+    %th{colspan:3} Afkorting
+    %th
+
+  - @clubs.each do |club|
+    %tr
+      %td{colspan:3}= link_to club.name, club
+      %td{colspan:3}= club.abbrev
+      %td
+        = link_to edit_club_path(club), title: 'Bewerken' do
+          = fa_icon 'pencil'
+        = link_to club, :method => :delete, :data => { :confirm => 'Are you sure?' }, title: 'Verwijderen' do
+          = fa_icon 'trash-o'
+
+%br
+
+= link_to 'New Club', new_club_path

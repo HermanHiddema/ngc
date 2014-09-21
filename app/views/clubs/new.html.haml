@@ -1,0 +1,6 @@
+%h1 Nieuwe club
+= simple_form_for @club do |f|
+	= render 'form', f: f
+
+	.form_actions
+		= f.submit 'Opslaan', class: 'button'

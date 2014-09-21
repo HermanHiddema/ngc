@@ -1,0 +1,12 @@
+%h1 Stand #{@season.name}
+
+- @leagues.each.with_index do |league,index|
+	- if index % 2 == 1
+		.row
+			.small-16.large-6.columns
+				%h3= link_to league.name, league
+				= render partial: 'standings', locals: { league: league }
+	-else
+		.small-16.large-6.columns
+			%h3= link_to league.name, league
+			= render partial: 'standings', locals: { league: league }

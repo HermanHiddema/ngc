@@ -1,0 +1,15 @@
+.form-inputs
+	%table
+		%tr
+			%th
+				Zwart:
+				= @match.black_team.try(:name)
+			%th
+				Wit:
+				= @match.white_team.try(:name)
+			%th Resultaat
+		= f.simple_fields_for :games, @games do |g|
+			%tr
+				%td= g.association :black_player, label: false
+				%td= g.association :white_player, label: false
+				%td= g.input :result, label: false, as: :select, collection: ['?-?', '1-0', '0-1', '0-0', '1-1', 'jigo'], default: '?-?'

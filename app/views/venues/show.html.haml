@@ -1,0 +1,14 @@
+%h1= @venue.name
+%p
+  Iedere
+  = ['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'][@venue.playing_day]
+  bij club
+  = @venue.club.name
+  om
+  = @venue.playing_time
+
+%h3 Info van de speellokatie
+%p
+  = @venue.info
+
+= link_to I18n.t(:edit), edit_venue_path(@venue), class: 'button'

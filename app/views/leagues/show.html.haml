@@ -1,0 +1,9 @@
+%h1= @league.name
+
+%h3 Stand
+
+= render partial: 'standings', locals: { league: @league }
+
+%h3 Rooster
+
+= render partial: 'calendar', locals: { league: @league }

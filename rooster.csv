@@ -1,0 +1,65 @@
+"1","43","13","19","13","1","Den Haag 1","Groningen 1","Utrecht","ma","13","50","6"
+"2","13","4","22","3","1","Groningen 1","Arnhem 1","Zwolle","wo","3","41",NULL
+"3","19","13","22","6","1","Utrecht 1","Groningen 1","Zwolle","wo","6","46",NULL
+"4","46","13","19","11","1","Den Haag 2","Groningen 1","Utrecht","ma","11","50","4"
+"5","13","15","19","12","1","Groningen 1","Leiden 1","Utrecht","ma","12","50","5"
+"6","4","43","19","8","1","Arnhem 1","Den Haag 1","Utrecht","ma","8","49",NULL
+"7","43","19","25","5","1","Den Haag 1","Utrecht 1","Den Haag","wo","5","44",NULL
+"8","43","46","25","3","1","Den Haag 1","Den Haag 2","Den Haag","wo","3","41",NULL
+"9","15","43","24","6","1","Leiden 1","Den Haag 1","Leiden (donderdag)","do","6","46",NULL
+"10","4","19","19","1","1","Arnhem 1","Utrecht 1","Utrecht","ma","1","38",NULL
+"11","4","46","19","6","1","Arnhem 1","Den Haag 2","Utrecht","ma","6","46",NULL
+"12","15","4","19","5","1","Leiden 1","Arnhem 1","Utrecht","ma","5","44",NULL
+"13","19","46","19","8","1","Utrecht 1","Den Haag 2","Utrecht","ma","8","49",NULL
+"14","15","19","24","3","1","Leiden 1","Utrecht 1","Leiden (donderdag)","do","3","41",NULL
+"15","46","15","25","1","1","Den Haag 2","Leiden 1","Den Haag","wo","1","38",NULL
+"16","20","16","19","1","2","Utrecht 2","Leiden 2","Utrecht","ma","1","38",NULL
+"17","1","20","1","3","2","Almere 1","Utrecht 2","Almere","wo","3","41",NULL
+"18","20","128","22","8","2","Utrecht 2","Groningen 2","Zwolle","wo","8","49",NULL
+"19","119","20","16","6","2","Nijmegen 1","Utrecht 2","Nijmegen","ma","6","46",NULL
+"20","16","1","24","8","2","Leiden 2","Almere 1","Leiden (donderdag)","do","8","49",NULL
+"21","128","16","19","12","2","Groningen 2","Leiden 2","Utrecht","ma","12","50","5"
+"22","16","119","19","3","2","Leiden 2","Nijmegen 1","Utrecht","ma","3","41",NULL
+"23","1","128","19","11","2","Almere 1","Groningen 2","Utrecht","ma","11","50","4"
+"24","119","1","19","5","2","Nijmegen 1","Almere 1","Utrecht","ma","5","44",NULL
+"25","128","119","19","13","2","Groningen 2","Nijmegen 1","Utrecht","ma","13","50","6"
+"26","114","121","33","1","3","Alph/Gouda/Zoet&nbsp;1","Amstelveen 1","Zoetermeer","di","1","38",NULL
+"27","47","114","19","3","3","Arnhem 2","Alph/Gouda/Zoet&nbsp;1","Utrecht","ma","3","41",NULL
+"28","48","114","25","8","3","Den Haag 3","Alph/Gouda/Zoet&nbsp;1","Den Haag","wo","8","49",NULL
+"29","114","133","30","5","3","Alph/Gouda/Zoet&nbsp;1","Amsterdam 1","Alphen","di","5","44",NULL
+"30","121","47","19","6","3","Amstelveen 1","Arnhem 2","Utrecht","ma","6","46",NULL
+"31","48","121","25","5","3","Den Haag 3","Amstelveen 1","Den Haag","wo","5","44",NULL
+"32","121","133","3","3","3","Amstelveen 1","Amsterdam 1","Amstelveen","di","3","41",NULL
+"33","47","48","19","1","3","Arnhem 2","Den Haag 3","Utrecht","ma","1","38",NULL
+"34","133","47","19","8","3","Amsterdam 1","Arnhem 2","Utrecht","ma","8","49",NULL
+"35","133","48","4","6","3","Amsterdam 1","Den Haag 3","Amsterdam","wo","6","46",NULL
+"36","116","34","24","1","4","Leiden 3","Almere 2","Leiden (donderdag)","do","1","38",NULL
+"37","34","129","22","4","4","Almere 2","Groningen 3","Zwolle","wo","4","42",NULL
+"38","135","34","19","5","4","Nijmegen 2","Almere 2","Utrecht","ma","5","44",NULL
+"39","21","34","19","6","4","Utrecht 3","Almere 2","Utrecht","ma","6","46",NULL
+"40","34","134","1","8","4","Almere 2","Den Haag 4","Almere","wo","8","49",NULL
+"41","129","116","19","12","4","Groningen 3","Leiden 3","Utrecht","ma","12","50","5"
+"42","116","135","19","6","4","Leiden 3","Nijmegen 2","Utrecht","ma","6","46",NULL
+"43","116","21","24","3","4","Leiden 3","Utrecht 3","Leiden (donderdag)","do","3","41",NULL
+"44","134","116","25","5","4","Den Haag 4","Leiden 3","Den Haag","wo","5","44",NULL
+"45","129","135","19","13","4","Groningen 3","Nijmegen 2","Utrecht","ma","13","50","6"
+"46","129","21","22","5","4","Groningen 3","Utrecht 3","Zwolle","wo","5","44",NULL
+"47","134","129","19","11","4","Den Haag 4","Groningen 3","Utrecht","ma","11","50","4"
+"48","135","21","16","8","4","Nijmegen 2","Utrecht 3","Nijmegen","ma","8","49",NULL
+"49","135","134","19","3","4","Nijmegen 2","Den Haag 4","Utrecht","ma","3","41",NULL
+"50","21","134","19","1","4","Utrecht 3","Den Haag 4","Utrecht","ma","1","38",NULL
+"51","136","117","25","1","5","Den Haag 5","Leiden 4","Den Haag","wo","1","38",NULL
+"52","117","138","24","3","5","Leiden 4","Alph/Gouda/Zoet&nbsp;2","Leiden (donderdag)","do","3","41",NULL
+"53","22","117","19","5","5","Utrecht 4","Leiden 4","Utrecht","ma","5","44",NULL
+"54","137","117","19","12","5","Groningen 4","Leiden 4","Utrecht","ma","12","50","5"
+"55","117","23","24","8","5","Leiden 4","Utrecht 5","Leiden (donderdag)","do","8","49",NULL
+"56","138","136","31","8","5","Alph/Gouda/Zoet&nbsp;2","Den Haag 5","Gouda","di","8","49",NULL
+"57","136","22","25","6","5","Den Haag 5","Utrecht 4","Den Haag","wo","6","46",NULL
+"58","136","137","19","11","5","Den Haag 5","Groningen 4","Utrecht","ma","11","50","4"
+"59","23","136","19","5","5","Utrecht 5","Den Haag 5","Utrecht","ma","5","44",NULL
+"60","138","22","33","1","5","Alph/Gouda/Zoet&nbsp;2","Utrecht 4","Zoetermeer","di","1","38",NULL
+"61","138","137","19","13","5","Alph/Gouda/Zoet&nbsp;2","Groningen 4","Utrecht","ma","13","50","6"
+"62","23","138","19","6","5","Utrecht 5","Alph/Gouda/Zoet&nbsp;2","Utrecht","ma","6","46",NULL
+"63","22","137","22","7","5","Utrecht 4","Groningen 4","Zwolle","wo","7","48",NULL
+"64","22","23","19","3","5","Utrecht 4","Utrecht 5","Utrecht","ma","3","41",NULL
+"65","137","23","22","2","5","Groningen 4","Utrecht 5","Zwolle","wo","2","39",NULL

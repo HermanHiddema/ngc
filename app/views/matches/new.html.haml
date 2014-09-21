@@ -1,0 +1,15 @@
+%h1 Nieuwe wedstrijd
+
+= simple_form_for(@match) do |f|
+	= f.error_notification
+
+	.form-inputs
+		= f.association :league
+		= f.association :venue
+		= f.association :black_team
+		= f.association :white_team
+		= f.input :playing_date, as: :string, input_html: { class: :datepicker }
+		= f.input :playing_time
+
+	.form-actions
+		= f.submit 'Opslaan', class: 'button'

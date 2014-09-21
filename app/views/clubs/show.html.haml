@@ -1,0 +1,10 @@
+%h2 #{@club.name} (#{@club.abbrev})
+
+.teams
+	= render @teams
+
+.players
+	= render 'participants/list'
+
+- if current_user
+	= link_to 'Bewerken', edit_club_path(@club), class: :button

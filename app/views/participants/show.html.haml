@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Firstname:
+  = @participant.firstname
+%p
+  %b Lastname:
+  = @participant.lastname
+%p
+  %b Rating:
+  = @participant.rating
+%p
+  %b Egd pin:
+  = @participant.egd_pin
+%p
+  %b Club:
+  = @participant.club
+%p
+  %b Season:
+  = @participant.season
+
+= link_to 'Edit', edit_participant_path(@participant)
+\|
+= link_to 'Back', participants_path

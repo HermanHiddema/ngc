@@ -1,0 +1,8 @@
+%table
+	%tr
+		%th Datum/tijd
+		%th Speellokatie
+		%th Zwart
+		%th Wit
+		%th Resultaat
+	= render league.matches.order(:playing_date)

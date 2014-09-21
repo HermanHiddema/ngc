@@ -1,0 +1,8 @@
+%tr
+	%td
+		= l match.playing_date, format: :short
+		= match.playing_time
+	%td= match.venue.name
+	%td= match.black_team.name
+	%td= match.white_team.name
+	%td= match.played? ? match.result : ''

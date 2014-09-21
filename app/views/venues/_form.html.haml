@@ -1,0 +1,12 @@
+= simple_form_for(@venue) do |f|
+	= f.error_notification
+
+	.form-inputs
+		= f.association :club
+		= f.input :name
+		= f.input :playing_day
+		= f.input :playing_time
+		= f.input :info
+
+	.form-actions
+		= f.button :submit

@@ -1,0 +1,11 @@
+%h1 Wedstrijd bewerken
+
+= simple_form_for(@match) do |f|
+	= f.error_notification
+	.form-inputs
+		= f.association :venue
+		= f.input :playing_date, as: :string, input_html: { class: :datepicker }
+		= f.input :playing_time
+	= render 'form', f: f
+	.form-actions
+		= f.submit 'Opslaan', class: 'button'

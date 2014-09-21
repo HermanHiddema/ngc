@@ -1,0 +1,24 @@
+nl:
+  edit: Bewerken
+  simple_form:
+    labels:
+      club:
+        abbrev: Afkorting
+        name: Naam
+      team:
+        abbrev: Afkorting
+        name: Naam
+        league: Poule
+        club: Club
+      participant:
+        lastname: Achternaam
+        firstname: Voornaam
+      match:
+        venue: Speellokatie
+        scheduled_at: Datum/tijd
+        league: Poule
+        match_teams:
+          color: Kleur
+  time:
+    formats:
+       medium: '%e %b %Y %H:%M'

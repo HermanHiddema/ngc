@@ -1,0 +1,23 @@
+%h1 Listing teams
+
+%table
+  %tr
+    %th Name
+    %th Club
+    %th League
+    %th
+
+  - @teams.each do |team|
+    %tr
+      %td= link_to team.name, team
+      %td= team.club.name
+      %td= team.league.name
+      %td
+        = link_to edit_team_path(team), title: 'Bewerken' do
+          = fa_icon 'pencil'
+        = link_to team, :method => :delete, :data => { :confirm => 'Are you sure?' }, title: 'Verwijderen' do
+          = fa_icon 'trash-o'
+
+%br
+
+= link_to 'New Team', new_team_path
