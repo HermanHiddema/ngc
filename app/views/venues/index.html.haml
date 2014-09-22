@@ -1,27 +1,21 @@
 %h1 Speellokaties
 
 %table
-  %tr
-    %th Naam
-    %th Speeldag
-    %th Starttijd
-    %th{colspan:2} Info
-    / %th
+	%tr
+		%th Naam
+		%th Speeldag
+		%th Starttijd
+		%th{colspan:2} Info
+		/ %th
 
-  - @venues.each do |venue|
-    %tr
-      %td= link_to venue.name, venue
-      %td= ['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'][venue.playing_day]
-      %td= venue.playing_time
-      %td{colspan:2}
-        #{(venue.info || '')[0..100]}...
-      / %td
-      /   = link_to edit_venue_path(venue), title: 'Bewerken' do
-      /     = fa_icon 'pencil'
-      /   = link_to venue, :method => :delete, :data => { :confirm => 'Are you sure?' }, title: 'Verwijderen' do
-      /     = fa_icon 'trash-o'
-
+	- @venues.each do |venue|
+		%tr
+			%td= link_to venue.name, venue
+			%td= ['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'][venue.playing_day]
+			%td= venue.playing_time
+			%td{colspan:2}
+				#{(venue.info || '')[0..100]}...
 %br
 
 - if current_user
-  = link_to 'Lokatie Toevoegen', new_venue_path, class: 'button'
+	= link_to 'Lokatie Toevoegen', new_venue_path, class: 'button'

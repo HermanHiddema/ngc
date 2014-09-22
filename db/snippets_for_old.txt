@@ -1,0 +1,18 @@
+SELECT rooster.*, zwart.poule, zwart.naam as znaam, wit.naam as wnaam, clubs.naam, clubs.speeldag, speeldata.*
+FROM `rooster`
+LEFT JOIN teams AS zwart ON zwart.id = teamz
+LEFT JOIN teams AS wit ON wit.id = teamw
+LEFT JOIN clubs ON clubs.id = locatie
+LEFT JOIN speeldata ON speeldata.id = rooster.week
+
+
+SELECT teams.naam, teams.club, teams.poule,
+p1.voornaam, p1.achternaam, p1.rating,
+p2.voornaam, p2.achternaam, p2.rating,
+p3.voornaam, p3.achternaam, p3.rating,
+cap.voornaam, cap.achternaam
+FROM `teams`
+LEFT JOIN personen AS p1 ON p1.id = basisspeler1
+LEFT JOIN personen AS p2 ON p2.id = basisspeler2
+LEFT JOIN personen AS p3 ON p3.id = basisspeler3
+LEFT JOIN personen AS cap ON cap.id = teamcaptain
