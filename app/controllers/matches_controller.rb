@@ -73,6 +73,6 @@ class MatchesController < ApplicationController
 		end
 
 		def match_update_params
-			params.require(:match).permit(:venue_id, :scheduled_at, games_attributes: [:id, :black_id, :white_id, :result])
+			params.require(:match).permit(:venue_id, :playing_date, :playing_time, games_attributes: [:id, :black_id, :white_id, :result])
 		end
 end
