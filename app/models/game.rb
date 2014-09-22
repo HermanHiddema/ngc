@@ -23,9 +23,9 @@ class Game < ActiveRecord::Base
 			self.white_points = nil
 		end
 		if value.include? '!'
-			reason = '!'
+			self.reason = '!'
 		else
-			reason = nil
+			self.reason = nil
 		end
 	end
 end
