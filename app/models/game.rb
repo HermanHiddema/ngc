@@ -9,7 +9,7 @@ class Game < ActiveRecord::Base
 		elsif black_points.nil? && white_points.nil? 
 			"?-?"
 		else
-			"#{black_points/2}-#{white_points/2}{#reason}"
+			"#{black_points/2}-#{white_points/2}#{reason}"
 		end
 	end
 
