@@ -7,3 +7,6 @@
 %h3 Rooster
 
 = render partial: 'calendar', locals: { league: @league }
+
+- if current_user
+	= link_to 'Poule Bewerken', edit_league_path(@league), class: 'button'

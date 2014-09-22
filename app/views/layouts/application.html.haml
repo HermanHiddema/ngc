@@ -29,16 +29,11 @@
 							%li
 								= link_to 'Inloggen', new_user_session_path					
 					%ul.left
-						%li
-							= link_to 'Stand', leagues_path
-						%li
-							= link_to 'Rooster', matches_path
-						%li
-							= link_to 'Teams', teams_path
-						%li
-							= link_to 'Clubs', clubs_path
-						%li
-							= link_to 'Lokaties', venues_path
+						%li= link_to 'Stand', root_path
+						%li= link_to 'Rooster', matches_path
+						%li= link_to 'Teams', teams_path
+						%li= link_to 'Clubs', clubs_path
+						%li= link_to 'Lokaties', venues_path
 		.row
 			.small-12.columns
 				- if flash[:alert]

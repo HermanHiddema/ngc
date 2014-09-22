@@ -1,14 +1,14 @@
 - teams = league.teams.to_a.sort_by{|t| [t.score, t.points]}.reverse
 %table
 	%tr
-		%th{colspan:3}
+		%th{colspan:4}
 		- teams.each do |team|
 			%th= team.abbrev
 		%th WP
 		%th BP
 	- teams.each do |team|
 		%tr
-			%th{colspan:3}= link_to team.name, team
+			%th{colspan:4}= link_to team.name, team
 			- teams.each do |team2|
 				- if team == team2
 					%td

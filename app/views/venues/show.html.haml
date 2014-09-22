@@ -1,14 +1,22 @@
 %h1= @venue.name
 %p
-  Iedere
-  = ['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'][@venue.playing_day]
-  bij club
-  = @venue.club.name
-  om
-  = @venue.playing_time
+	Iedere
+	= ['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'][@venue.playing_day]
+	om
+	= @venue.playing_time
+
+%h3 Wedstrijden
+%table
+	%tr
+		%th Datum/tijd
+		%th Speellokatie
+		%th Zwart
+		%th Wit
+		%th Resultaat
+	= render @venue.matches.order(:playing_date, :playing_time)
 
 %h3 Info van de speellokatie
 %p
-  = @venue.info
+	= @venue.info
 
 = link_to I18n.t(:edit), edit_venue_path(@venue), class: 'button'

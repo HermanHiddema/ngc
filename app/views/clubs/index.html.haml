@@ -1,22 +1,23 @@
 %h1 Clubs
 
 %table
-  %tr
-    %th Naam
-    %th Afkorting
-    %th{colspan:5} Teams
+	%tr
+		%th Naam
+		%th Afkorting
+		%th{colspan:5} Teams
 
-  - @clubs.each do |club|
-    %tr
-      %td= link_to club.name, club
-      %td= club.abbrev
-      %td{colspan:5}= club.teams.order(:name).pluck(:name).join(', ')
-      / %td
-      /   = link_to edit_club_path(club), title: 'Bewerken' do
-      /     = fa_icon 'pencil'
-      /   = link_to club, :method => :delete, :data => { :confirm => 'Are you sure?' }, title: 'Verwijderen' do
-      /     = fa_icon 'trash-o'
+	- @clubs.each do |club|
+		%tr
+			%td= link_to club.name, club
+			%td= club.abbrev
+			%td{colspan:5}= club.teams.order(:name).pluck(:name).join(', ')
+			/ %td
+			/	 = link_to edit_club_path(club), title: 'Bewerken' do
+			/		 = fa_icon 'pencil'
+			/	 = link_to club, :method => :delete, :data => { :confirm => 'Are you sure?' }, title: 'Verwijderen' do
+			/		 = fa_icon 'trash-o'
 
 %br
 
-= link_to 'New Club', new_club_path
+- if current_user
+	= link_to 'Nieuwe Club', new_club_path, class: 'button'

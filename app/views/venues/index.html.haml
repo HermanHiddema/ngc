@@ -22,4 +22,5 @@
 
 %br
 
-= link_to 'New Venue', new_venue_path
+- if current_user
+  = link_to 'Lokatie Toevoegen', new_venue_path, class: 'button'

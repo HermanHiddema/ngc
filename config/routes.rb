@@ -1,20 +1,16 @@
 Rails.application.routes.draw do
-  resources :people
-
-  resources :venues
-
   devise_for :users
 
+  resources :people
+  resources :venues
   resources :games
   resources :participants
-  resources :match_team_members
-  resources :team_members
-  resources :match_teams
   resources :matches
   resources :teams
   resources :leagues
-  resources :seasons
   resources :clubs
+
+  resources :seasons
 
   root to: 'leagues#index'
 
