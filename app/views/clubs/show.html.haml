@@ -5,6 +5,13 @@
 - if current_user
 	= link_to 'Bewerken', edit_club_path(@club), class: :button
 
+%h3 Speellokatie#{@club.venues.count > 1 ? 's' : ''}
+- @club.venues.each do |venue|
+	%h4
+		#{link_to venue.name, venue}:
+		iedere #{['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'][venue.playing_day]} om #{venue.playing_time}
+	= markdown venue.info || ''
+
 %h3 Teams
 %table
 	%tr

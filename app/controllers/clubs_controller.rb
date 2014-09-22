@@ -2,7 +2,8 @@ class ClubsController < ApplicationController
 	before_action :set_club, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@clubs = Club.all
+		@clubs = Club.where('LENGTH(name) > 4')
+		@clubs = Club.all if params[:all]
 	end
 
 	def show
