@@ -13,7 +13,8 @@
       %td= link_to venue.name, venue
       %td= ['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'][venue.playing_day]
       %td= venue.playing_time
-      %td{colspan:2}= venue.info
+      %td{colspan:2}
+        #{(venue.info || '')[0..100]}...
       / %td
       /   = link_to edit_venue_path(venue), title: 'Bewerken' do
       /     = fa_icon 'pencil'
