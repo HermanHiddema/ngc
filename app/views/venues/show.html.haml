@@ -1,6 +1,12 @@
 %h1= @venue.name
+
+= markdown @venue.info || ''
+
+- if current_user
+	= link_to 'Lokatie bewerken', edit_venue_path(@venue), class: 'button'
+
 %p
-	Iedere
+	Speelavond: Iedere
 	= ['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'][@venue.playing_day]
 	om
 	= @venue.playing_time
@@ -15,8 +21,3 @@
 		%th Resultaat
 	= render @venue.matches.order(:playing_date, :playing_time)
 
-%h3 Info van de speellokatie
-%p
-	= @venue.info
-
-= link_to I18n.t(:edit), edit_venue_path(@venue), class: 'button'

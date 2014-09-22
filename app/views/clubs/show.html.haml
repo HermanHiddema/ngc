@@ -1,5 +1,10 @@
 %h1 #{@club.name} (#{@club.abbrev})
 
+= markdown @club.info || ''
+
+- if current_user
+	= link_to 'Bewerken', edit_club_path(@club), class: :button
+
 %h3 Teams
 %table
 	%tr
@@ -30,5 +35,3 @@
 %h3 Spelers
 = render 'participants/list'
 
-- if current_user
-	= link_to 'Bewerken', edit_club_path(@club), class: :button
