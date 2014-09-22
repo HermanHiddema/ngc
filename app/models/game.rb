@@ -9,7 +9,7 @@ class Game < ActiveRecord::Base
 		elsif black_points.nil? && white_points.nil? 
 			"?-?"
 		else
-			"#{black_points/2}-#{white_points/2}"
+			"#{black_points/2}-#{white_points/2}{#reason}"
 		end
 	end
 
@@ -18,9 +18,6 @@ class Game < ActiveRecord::Base
 		when /([01])-([01])/
 			self.black_points = $1.to_i * 2
 			self.white_points = $2.to_i * 2
-		when 'jigo'
-			self.black_points = 1
-			self.white_points = 1
 		else
 			self.black_points = nil
 			self.white_points = nil
