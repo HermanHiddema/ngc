@@ -2,19 +2,20 @@
 
 %table
   %tr
-    %th{colspan:3} Naam
-    %th{colspan:3} Afkorting
-    %th
+    %th Naam
+    %th Afkorting
+    %th{colspan:5} Teams
 
   - @clubs.each do |club|
     %tr
-      %td{colspan:3}= link_to club.name, club
-      %td{colspan:3}= club.abbrev
-      %td
-        = link_to edit_club_path(club), title: 'Bewerken' do
-          = fa_icon 'pencil'
-        = link_to club, :method => :delete, :data => { :confirm => 'Are you sure?' }, title: 'Verwijderen' do
-          = fa_icon 'trash-o'
+      %td= link_to club.name, club
+      %td= club.abbrev
+      %td{colspan:5}= club.teams.order(:name).pluck(:name).join(', ')
+      / %td
+      /   = link_to edit_club_path(club), title: 'Bewerken' do
+      /     = fa_icon 'pencil'
+      /   = link_to club, :method => :delete, :data => { :confirm => 'Are you sure?' }, title: 'Verwijderen' do
+      /     = fa_icon 'trash-o'
 
 %br
 
