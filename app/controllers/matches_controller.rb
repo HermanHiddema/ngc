@@ -14,8 +14,6 @@ class MatchesController < ApplicationController
 	def new
 		@league = League.find(params[:league_id]) if params[:league_id]
 		@match = @league ? @league.matches.build : Match.new
-		@match.match_teams.build(color: 'B')
-		@match.match_teams.build(color: 'W')
 		@teams = @league ? @league.teams : Team.all
 	end
 
@@ -28,6 +26,8 @@ class MatchesController < ApplicationController
 			end
 		end
 		@games = @match.games.order(:board_number)
+		@black_players = params[:all] ? Participant.all.order('rating DESC') : @match.black_team.club.participants.order('rating DESC')
+		@white_players = params[:all] ? Participant.all.order('rating DESC') : @match.white_team.club.participants.order('rating DESC')
 	end
 
 	def create

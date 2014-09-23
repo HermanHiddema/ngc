@@ -10,6 +10,6 @@
 			%th Resultaat
 		= f.simple_fields_for :games, @games do |g|
 			%tr
-				%td= g.association :black_player, label: false
-				%td= g.association :white_player, label: false
+				%td= g.association :black_player, label: false, collection: @black_players
+				%td= g.association :white_player, label: false, collection: @white_players
 				%td= g.input :result, label: false, as: :select, collection: ['?-?', '1-0', '0-1', '1-0!', '0-1!', '0-0'], default: '?-?'

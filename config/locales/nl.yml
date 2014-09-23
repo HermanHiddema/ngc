@@ -22,3 +22,6 @@ nl:
   time:
     formats:
        medium: '%e %b %Y %H:%M'
+  date:
+    formats:
+       short_with_day: '%a %e %b'
