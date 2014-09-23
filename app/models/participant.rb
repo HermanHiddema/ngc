@@ -2,7 +2,7 @@ class Participant < ActiveRecord::Base
 	belongs_to :club
 	belongs_to :season
 	belongs_to :person
-	validates_presence_of :person, :season
+	validates_presence_of :season
 	before_create :copy_person_attributes
 
 	def copy_person_attributes
