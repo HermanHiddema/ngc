@@ -2,10 +2,10 @@
 
 - @leagues.each_slice(2) do |league1,league2|
 	.row
-		.small-16.large-6.columns
+		.small-12.large-6.columns
 			%h3= link_to league1.name, league1
 			= render partial: 'standings', locals: { league: league1 }
 		- if league2
-			.small-16.large-6.columns
+			.small-12.large-6.columns
 				%h3= link_to league2.name, league2
 				= render partial: 'standings', locals: { league: league2 }
