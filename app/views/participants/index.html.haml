@@ -1,6 +1,7 @@
-%h1 Listing participants
+%h1 Alle deelnemers
 
-= render 'list'
+= link_to 'Deelnemer Toevoegen', new_participant_path, class: 'button'
 
 %br
-= link_to 'New Participant', new_participant_path
+
+= render 'list'

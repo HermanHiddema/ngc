@@ -1,13 +1,13 @@
 = simple_form_for(@participant) do |f|
-  = f.error_notification
+	= f.error_notification
 
-  .form-inputs
-    = f.input :firstname
-    = f.input :lastname
-    = f.input :rating
-    = f.input :egd_pin
-    = f.association :club
-    = f.association :season
+	.form-inputs
+		= f.input :firstname
+		= f.input :lastname
+		= f.input :rating
+		= f.input :egd_pin
+		= f.association :club
+		= f.association :season
 
-  .form-actions
-    = f.button :submit
+	.form-actions
+		= f.submit 'Opslaan', class: 'button'

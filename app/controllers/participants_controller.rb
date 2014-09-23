@@ -25,6 +25,9 @@ class ParticipantsController < ApplicationController
   # POST /participants.json
   def create
     @participant = Participant.new(participant_params)
+    if @participant.season_id.blank?
+      @participant.season = Season.last
+    end
 
     respond_to do |format|
       if @participant.save
