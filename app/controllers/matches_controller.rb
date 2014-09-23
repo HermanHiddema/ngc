@@ -26,8 +26,15 @@ class MatchesController < ApplicationController
 			end
 		end
 		@games = @match.games.order(:board_number)
-		@black_players = params[:all] ? Participant.all.order('rating DESC') : @match.black_team.club.participants.order('rating DESC')
-		@white_players = params[:all] ? Participant.all.order('rating DESC') : @match.white_team.club.participants.order('rating DESC')
+		if params[:all]
+			@black_players = Participant.all
+			@white_players = Participant.all
+		else
+			@black_players = Participant.where('club_id IN (?)', @match.black_team.club.teams.includes(team_members: :participant).map { |t| t.team_members.map { |m| m.participant.club_id } }.flatten)
+			@white_players = Participant.where('club_id IN (?)', @match.white_team.club.teams.includes(team_members: :participant).map { |t| t.team_members.map { |m| m.participant.club_id } }.flatten)
+		end
+		@black_players = @black_players.order('rating DESC')
+		@white_players = @white_players.order('rating DESC')
 	end
 
 	def create
