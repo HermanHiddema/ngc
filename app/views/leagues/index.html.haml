@@ -8,4 +8,4 @@
 		- if league2
 			.small-12.large-6.columns
 				%h3= link_to league2.name, league2
-				= render partial: 'standings', locals: { league: league2 }
+				= render partial: 'standings', locals: { league: league2, :@fill_rows_upto => 6 }

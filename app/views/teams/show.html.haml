@@ -31,4 +31,5 @@
 %p
 	= render collection: @matches, as: :match, partial: 'matches/match_details' 
 
-= link_to 'Team Bewerken', edit_team_path(@team), class: 'button'
+- if current_user
+	= link_to 'Team Bewerken', edit_team_path(@team), class: 'button'

@@ -1,32 +1,36 @@
-- teams = league.teams.to_a.sort_by{|t| [t.score, t.points]}.reverse
-%table
+- teams = league.teams.to_a.sort_by(&:placement_criteria).reverse
+%table.league-standings
 	%tr
-		%th{colspan:4}
+		%th.team-name
 		- teams.each do |team|
-			%th= team.abbrev
-		%th WP
-		%th BP
-	- teams.each do |team|
+			%th.team-abbrev= team.abbrev
+		%th.pts WP
+		%th.pts BP
+	- teams.each do |team1|
 		%tr
-			%th{colspan:4}= link_to team.name, team
+			%th.team-name
+				= link_to team1 do
+					%span.show-for-medium-up= team1.name
+					%span.hide-for-medium-up= team1.abbrev
 			- teams.each do |team2|
-				- if team == team2
-					%td
-						&times;
+				- if team1.id == team2.id
+					%td &times;
 				- else
-					- match = team.matches.select { |m| m.opponent(team).id == team2.id }.try(&:first)
-					- if match.nil?
-						%td
-					- elsif match.played?
-						- if match.black_team.id == team.id
-							%td{class: match.black_score > 0 ? 'won' : 'lost'}
-								= link_to match.black_points, match
-						- else
-							%td{class: match.white_score > 0 ? 'won' : 'lost'}
-								= link_to match.white_points, match
-					- else
-						%td
-							%small
-								= link_to (match.playing_date.strftime("%e/%-m")), edit_match_path(match), title: match.venue.try(:name)
-			%th= team.score
-			%th= team.points
+					- match, result, status, venue = league.standings[team1.id][team2.id]
+					%td{class: status}
+						= link_to match, title: venue.name do
+							- if result
+								= result
+							-else 
+								%small= match.playing_date.strftime("%e/%-m")
+			%th= team1.score
+			%th= team1.points
+	- if @fill_rows_upto
+		- (@fill_rows_upto - teams.length).times do
+			%tr.show-for-large-up
+				%th.team-name
+				- teams.length.times do
+					%td
+						%small &nbsp;
+				%th &nbsp;
+				%th &nbsp;

@@ -6,7 +6,10 @@
 
 %h3 Rooster
 
-= render partial: 'calendar', locals: { league: @league }
+= render partial: 'matches/list', locals: { matches: @league.matches.order(:playing_date, :playing_time) }
 
 - if current_user
+
+	= render partial: 'participants/list'
+
 	= link_to 'Poule Bewerken', edit_league_path(@league), class: 'button'

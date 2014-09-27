@@ -1,8 +1,16 @@
 %tr
 	%td
-		= l match.playing_date, format: :short_with_day
-		= match.playing_time
-	%td= link_to match.venue.name, match.venue
-	%td= link_to match.black_team.name, match.black_team
-	%td= link_to match.white_team.name, match.white_team
+		%span
+			%span.show-for-medium-up= l match.playing_date, format: '%a'
+			= l match.playing_date, format: :short
+			%span.show-for-medium-up= match.playing_time
+			= link_to match.venue.name, match.venue
+	%td
+		= link_to match.black_team do
+			%span.show-for-medium-up= match.black_team.name 
+			%span.hide-for-medium-up= match.black_team.abbrev 
+	%td
+		= link_to match.white_team do
+			%span.show-for-medium-up= match.white_team.name 
+			%span.hide-for-medium-up= match.white_team.abbrev 
 	%td= match.played? ? match.result : link_to('?-?', edit_match_path(match))

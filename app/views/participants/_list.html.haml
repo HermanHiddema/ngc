@@ -1,21 +1,8 @@
 %table
-  %tr
-    %th Achternaam
-    %th Voornaam
-    %th Club
-    %th Rating
-    %th Egd pin
-    %th
-
-  - @participants.each do |participant|
-    %tr
-      %td= link_to participant.lastname, participant
-      %td= link_to participant.firstname, participant
-      %td= link_to participant.club.name, participant.club
-      %td= participant.rating
-      %td= participant.egd_pin
-      %td
-        = link_to edit_participant_path(participant) do
-          = fa_icon 'pencil'
-        = link_to participant, :method => :delete, :data => { :confirm => 'Are you sure?' }, title: 'Delete' do
-          = fa_icon 'trash-o'
+	%tr
+		%th Achternaam
+		%th Voornaam
+		%th Club
+		%th Rating
+		%th
+	= render @participants

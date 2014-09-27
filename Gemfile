@@ -16,16 +16,19 @@ gem 'font-awesome-rails'
 gem 'country_select'
 gem 'devise'
 gem 'devise-i18n'
-gem 'rails_12factor'
 gem 'redcarpet'
 
+group :production do
+	gem 'rails_12factor'
+end
+
 group :doc do
-  gem 'sdoc', require: false
+	gem 'sdoc', require: false
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3'
-  gem 'shoulda-matchers'
-  gem 'sqlite3'
-  gem 'quiet_assets'
+	gem 'rspec-rails', '~> 3'
+	gem 'shoulda-matchers'
+	gem 'sqlite3'
+	gem 'quiet_assets'
 end

@@ -12,15 +12,20 @@ class Team < ActiveRecord::Base
 	delegate :name, to: :captain, prefix: true
 
 	def matches
-		Match.where('black_team_id = ? OR white_team_id = ?', self.id, self.id)
+		@matches ||= Match.where('black_team_id = ? OR white_team_id = ?', self.id, self.id)
 	end
 
 	def score
-		(black_matches.map(&:black_score) + white_matches.map(&:white_score)).compact.sum
+		@score ||= (black_matches.map(&:black_score) + white_matches.map(&:white_score)).compact.sum
 	end
 
 	def points
-		(black_matches.map(&:black_points) + white_matches.map(&:white_points)).compact.sum
+		@points ||= (black_matches.map(&:black_points) + white_matches.map(&:white_points)).compact.sum
 	end
+
+	def placement_criteria
+		[score, points]
+	end
+
 
 end

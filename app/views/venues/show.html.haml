@@ -13,12 +13,5 @@
 	= @venue.playing_time
 
 %h3 Wedstrijden
-%table
-	%tr
-		%th Datum/tijd
-		%th Speellokatie
-		%th Zwart
-		%th Wit
-		%th Resultaat
-	= render @venue.matches.order(:playing_date, :playing_time)
+= render partial: 'matches/list', locals: { matches: @venue.matches.order(:playing_date, :playing_time) }
 

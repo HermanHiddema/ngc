@@ -35,4 +35,29 @@ class League < ActiveRecord::Base
 			round
 		end
 	end
+
+	def standings
+		return @standings if @standings
+		teams = self.teams.to_a.sort_by(&:placement_criteria).reverse
+		table = Hash.new
+		teams.product(teams).each do |team1, team2|
+			table[team1.id] ||= {}
+			table[team1.id][team2.id] = {}
+		end
+		matches.each do |match|
+			table[match.black_team_id][match.white_team_id] = [
+				match,
+				match.played? ? match.black_points : nil,
+				match.played? ? (match.black_score == 1 ? 'won' : 'lost') : 'unplayed',
+				match.venue
+			]
+			table[match.white_team_id][match.black_team_id] = [
+				match,
+				match.played? ? match.white_points : nil,
+				match.played? ? (match.white_score == 1 ? 'won' : 'lost') : 'unplayed',
+				match.venue
+			]
+		end
+		@standings = table
+	end
 end

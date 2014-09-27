@@ -28,30 +28,30 @@ class Match < ActiveRecord::Base
 	end
 
 	def played?
-		@played ||= games.map(&:black_points).any?
+		@played ||= games.map(&:played?).any?
 	end
 
 	def black_score
 		if played?
-			black_points > white_points ? 1 : 0
+			@black_score ||= black_points > white_points ? 1 : 0
 		end
 	end
 
 	def white_score
 		if played?
-			white_points > black_points ? 1 : 0
+			@white_score ||= white_points > black_points ? 1 : 0
 		end
 	end
 
 	def black_points
 		if played?
-			games.sum(:black_points) / 2
+			@black_points ||= games.sum(:black_points) / 2
 		end
 	end
 
 	def white_points
 		if played?
-			games.sum(:white_points) / 2
+			@white_points ||= games.sum(:white_points) / 2
 		end
 	end
 

@@ -9,6 +9,7 @@ class ClubsController < ApplicationController
 	def show
 		@participants = @club.participants.order('rating DESC')
 		@teams = @club.teams.includes(:league, :club).order(:name)
+		@matches = Match.where('black_team_id in (?) OR white_team_id in (?)', @teams.pluck(:id), @teams.pluck(:id)).order(:playing_date, :playing_time)
 	end
 
 	def new
