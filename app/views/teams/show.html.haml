@@ -2,6 +2,9 @@
 %p
 	%b Captain:
 	= @team.captain_name
+	- if current_user
+		= link_to edit_person_path(@team.captain), title: 'Bewerken' do
+			= fa_icon 'pencil'
 	-if @team.captain.email
 		%br
 		%b Email:

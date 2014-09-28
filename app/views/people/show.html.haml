@@ -1,18 +1,20 @@
-%p#notice= notice
+%h1
+	= @person.firstname
+	= @person.lastname
 
 %p
-  %b Firstname:
-  = @person.firstname
-%p
-  %b Lastname:
-  = @person.lastname
-%p
-  %b Egd pin:
-  = @person.egd_pin
-%p
-  %b Email:
-  = @person.email
+	%h3 Gegevens
+	%br
+	Email:
+	= @person.email
+	%br
+	Email 2:
+	= @person.email2
+	%br
+	Telefoon:
+	= @person.phone
+	%br
+	Telefoon 2:
+	= @person.phone2
 
-= link_to 'Edit', edit_person_path(@person)
-\|
-= link_to 'Back', people_path
+= link_to 'Persoon Bewerken', edit_person_path(@person), class: 'button'

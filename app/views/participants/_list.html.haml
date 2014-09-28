@@ -4,5 +4,6 @@
 		%th Voornaam
 		%th Club
 		%th Rating
-		%th
+	- if current_user
+		%th Indiv. Pres.
 	= render @participants
