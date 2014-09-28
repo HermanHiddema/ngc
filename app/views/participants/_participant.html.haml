@@ -1,0 +1,8 @@
+%tr
+	%td= link_to participant.lastname, participant
+	%td= link_to participant.firstname, participant
+	%td= link_to participant.club.name, participant.club
+	%td= participant.rating
+	- if current_user
+		%td
+			= participant.rating_change

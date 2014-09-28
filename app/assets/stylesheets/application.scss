@@ -1,0 +1,70 @@
+@import "normalize";
+@import "foundation_and_overrides";
+@import "font-awesome";
+@import "jquery-ui/datepicker";
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+.league-standings {
+
+	td {
+		text-align: center;
+		&.won  { background-color: #cfc }
+		&.lost { background-color: #fcc }
+		&.tied { background-color: #ccf }
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	th {
+		padding-left: 0;
+		padding-right: 0;
+		text-align: center;		
+		&:first-child { 
+			text-align: left;
+			padding-left: 0.5625rem;
+			padding-right: 0.5625rem;
+		}
+	}
+}
+
+@media #{$medium-up} {
+
+	.league-standings th.team-name {
+		white-space: nowrap;
+		width: 150px;
+	}
+}
+
+@media #{$small-only} {
+
+	.league-standings {
+		th.team-name {
+			width: 15%;
+		}
+		th:first-child { 
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+
+	.match-roster {
+		tr>td:first-child, tr>th:first-child {
+			width: 150px;
+		}
+	}
+}
