@@ -1,0 +1,6 @@
+.row
+	.small-6.medium-3.columns= link_to club.name, club
+	.small-3.medium-1.columns= club.abbrev
+	.small-3.medium-1.columns= club.teams.count
+	.small-11.small-offset-1.medium-4.medium-offset-0.columns= club.website
+	.small-11.small-offset-1.medium-3.medium-offset-0.columns= club.contact_person.try(:name)
