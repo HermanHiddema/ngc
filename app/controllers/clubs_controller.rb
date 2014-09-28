@@ -4,6 +4,7 @@ class ClubsController < ApplicationController
 	def index
 		@clubs = Club.where('LENGTH(name) > 4')
 		@clubs = Club.all if params[:all]
+		@clubs = @clubs.order(:name)
 	end
 
 	def show

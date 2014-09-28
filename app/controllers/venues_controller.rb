@@ -3,6 +3,7 @@ class VenuesController < ApplicationController
 
 	def index
 		@venues = Venue.all
+		@venues = @venues.order(:name)
 	end
 
 	def show
