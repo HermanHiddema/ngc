@@ -7,19 +7,3 @@
 			.medium-4.small-12.columns= team.team_members.first.name
 			.medium-4.small-12.columns= team.team_members.second.name
 			.medium-4.small-12.columns= team.team_members.third.name
-
-/ %table
-/ 	%tr
-/ 		%th{colspan:2} Naam
-/ 		%th{colspan:2} Klasse
-/ 		%th{colspan:3} Bord 1
-/ 		%th{colspan:3} Bord 2
-/ 		%th{colspan:3} Bord 3
-
-/ 	- teams.each do |team|
-/ 		%tr
-/ 			%td{colspan:2}= link_to team.name, team
-/ 			%td{colspan:2}= team.league.name
-/ 			%td{colspan:3}= team.team_members.first.name
-/ 			%td{colspan:3}= team.team_members.second.name
-/ 			%td{colspan:3}= team.team_members.third.name
