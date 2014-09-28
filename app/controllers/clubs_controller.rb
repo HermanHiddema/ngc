@@ -18,6 +18,7 @@ class ClubsController < ApplicationController
 	end
 
 	def edit
+		@persons = Person.all.order(:firstname, :lastname)
 	end
 
 	def create

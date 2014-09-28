@@ -1,5 +1,12 @@
 %h1 #{@club.name} (#{@club.abbrev})
 
+%p
+	- if @club.contact_person
+		Contactpersoon:
+		= render @club.contact_person
+	- else
+		Geen contactpersoon bekend. Ben je contactpersoon van deze club? Neem dan even contact op met de NGC organisatie
+
 = markdown @club.info || ''
 
 - if current_user
