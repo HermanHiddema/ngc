@@ -1,9 +1,10 @@
 - teams.each do |team|
 	.row.collapse
-		.small-12.large-2.columns
+		.medium-2.small-12.columns
 			%strong
 				= link_to team.name, team
-		.small-12.large-10.columns
-			.medium-4.small-12.columns= team.team_members.first.name
-			.medium-4.small-12.columns= team.team_members.second.name
-			.medium-4.small-12.columns= team.team_members.third.name
+		.medium-10.small-12.columns
+			.row
+				.medium-4.small-12.columns #{team.team_members.first.name}
+				.medium-4.small-12.columns #{team.team_members.second.name}
+				.medium-4.small-12.columns #{team.team_members.third.name}

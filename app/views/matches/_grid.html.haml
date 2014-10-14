@@ -1,0 +1,19 @@
+- matches.order(:playing_date).pluck(:playing_date).uniq.each do |dt|
+	- next if matches.where(playing_date: dt).count == 0
+	%p
+		%h5
+			%strong= l dt, format: :short_with_day
+		- matches.where(playing_date: dt).each do |match|
+			.row.collapse
+				.small-11.medium-8.large-5.columns
+					.row.collapse
+						.small-6.columns= match.black_team.name
+						.small-6.columns
+							\-
+							= match.white_team.name
+				.small-1.column= match.result
+				.medium-3.large-6.show-for-medium-up.columns
+					Lokatie:
+					= link_to match.venue.name, match.venue
+
+
