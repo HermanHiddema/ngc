@@ -23,8 +23,12 @@ class Team < ActiveRecord::Base
 		@points ||= (black_matches.map(&:black_points) + white_matches.map(&:white_points)).compact.sum
 	end
 
+	def unplayed_matches
+		matches.reject(&:played?).length
+	end
+
 	def placement_criteria
-		[score, points]
+		[score, points, unplayed_matches]
 	end
 
 
