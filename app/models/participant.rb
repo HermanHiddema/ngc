@@ -3,7 +3,7 @@ class Participant < ActiveRecord::Base
 	belongs_to :season
 	belongs_to :person
 	validates_presence_of :season
-	before_create :copy_person_attributes
+#	before_create :copy_person_attributes
 	has_one :team_member
 	has_many :black_games, class_name: 'Game', foreign_key: :black_id
 	has_many :white_games, class_name: 'Game', foreign_key: :white_id
