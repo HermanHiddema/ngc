@@ -19,6 +19,14 @@ class Match < ActiveRecord::Base
 		end
 	end
 
+	def self.find_by_teams(team1, team2)
+		Match.find_by_team_ids(team1.id, team2.id) if team1 && team2
+	end
+
+	def self.find_by_team_ids(team1_id, team2_id)
+		Match.find_by(black_team_id: team1_id, white_team_id: team2_id) || Match.find_by(black_team_id: team2_id, white_team_id: team1_id)
+	end
+
 	def opponent(team)
 		@opponent ||= case team.id
 		when black_team.id then white_team

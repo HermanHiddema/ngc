@@ -31,5 +31,4 @@ class Team < ActiveRecord::Base
 		[score, points, unplayed_matches]
 	end
 
-
 end

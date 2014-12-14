@@ -21,6 +21,7 @@ class League < ActiveRecord::Base
 
 	def round_robin_pairing(participants)
 		return nil if participants.length < 3
+		participants = participants.dup
 		participants << nil if participants.length.odd?
 
 		boards = participants.length / 2
@@ -35,6 +36,24 @@ class League < ActiveRecord::Base
 			round
 		end
 	end
+
+	def direct_comparison
+		teams.product(teams).each do |team1, team2|
+			table[team1.id] ||= {}
+			table[team1.id][team2.id] = if team1.score == team2.score && team1.points == team2.points
+				0
+			else
+				nil
+			end
+		end
+		matches.each do |match|
+			if table[match.black_team_id][match.white_team_id]
+				table[match.black_team_id][match.white_team_id] = [match.black_score, match.black_points]
+				table[match.white_team_id][match.black_team_id] = [match.white_score, match.white_points]
+			end
+		end
+	end
+
 
 	def standings
 		return @standings if @standings
@@ -60,4 +79,31 @@ class League < ActiveRecord::Base
 		end
 		@standings = table
 	end
+
+	def team_ordered_players
+
+	end
+
+	def full_results
+		teams = self.teams.to_a.sort_by(&:placement_criteria).reverse
+		pairing = round_robin_pairing(teams)
+		table = Hash.new
+		teams.each do |team|
+			table[team.id] = Hash.new
+			table[team.id][:matches] = Array.new
+		end
+		pairing.each do |round|
+			round.each do |team1, team2|
+				match = Match.find_by_teams(team1, team2)
+				table[team1.id][:matches] << match
+				table[team2.id][:matches] << match
+				match.games.each do |game|
+					table[match.black_team_id][game.black_id]
+				end
+			end
+		end
+	end
+
+# League.first.full_results.map { |team,matches| [Team.find(team).name] + matches.map {|match| "#{match.opponent(Team.find(team)).abbrev} #{match.result}" } }
+
 end

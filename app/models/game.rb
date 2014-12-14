@@ -16,6 +16,16 @@ class Game < ActiveRecord::Base
 		!played?
 	end
 
+	def forfeit?
+		reason?
+	end
+
+	def color_of(player)
+		return :black if black_player == player
+		return :white if white_player == player
+		nil
+	end
+
 	def result
 		@result ||= if black_points == 1 && white_points == 1
 			"jigo"
@@ -60,12 +70,30 @@ class Game < ActiveRecord::Base
 		end
 	end
 
+	def black_result
+		case
+		when unplayed? then '?'
+		when black_score == 1 then '+'
+		when black_score == 0 then '-'
+		else '='
+		end
+	end
+
+	def white_result
+		case
+		when unplayed? then '?'
+		when white_score == 1 then '+'
+		when white_score == 0 then '-'
+		else '='
+		end
+	end
+
 	def black_rating_change
-		@black_rating_change ||= played? ? black_score - black_score_exp : 0
+		@black_rating_change ||= (played? && !forfeit?) ? black_score - black_score_exp : 0
 	end
 
 	def white_rating_change
-		@white_rating_change ||= played? ? white_score - white_score_exp : 0
+		@white_rating_change ||= (played? && !forfeit?) ? white_score - white_score_exp : 0
 	end
 
 	def black_score_exp

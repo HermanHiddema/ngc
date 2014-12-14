@@ -1,11 +1,18 @@
 class SeasonsController < ApplicationController
 	before_action :set_season, only: [:show, :edit, :update, :destroy]
 
+	respond_to :text
+
 	def index
 		@seasons = Season.all
 	end
 
 	def show
+		@season = Season.last
+		respond_with do |format|
+			format.text { render text: @season.results.join("\n") }
+			format.html { redirect_to leagues_url }
+		end
 	end
 
 	def new
