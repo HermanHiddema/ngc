@@ -1,0 +1,2 @@
+- @games.select(&:played?).reject(&:forfeit?).each do |game|
+	#{game.black_player.firstname} #{game.black_player.lastname} #{game.white_player.firstname} #{game.white_player.lastname} #{game.black_score == 1 ? '+' : '-'}
