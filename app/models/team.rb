@@ -5,11 +5,13 @@ class Team < ActiveRecord::Base
 
 	has_many :black_matches, class_name: 'Match', foreign_key: :black_team_id
 	has_many :white_matches, class_name: 'Match', foreign_key: :white_team_id
-	has_many :team_members
+	has_many :team_members, validate: true
 	has_many :participants, through: :team_members
 	accepts_nested_attributes_for :team_members
 
 	delegate :name, to: :captain, prefix: true
+
+	validates_presence_of :captain, :club, :name, :abbrev, :league
 
 	def matches
 		@matches ||= Match.where('black_team_id = ? OR white_team_id = ?', self.id, self.id)
@@ -28,7 +30,16 @@ class Team < ActiveRecord::Base
 	end
 
 	def placement_criteria
-		[score, points, unplayed_matches]
+		[score, points, unplayed_matches, direct_comparison]
+	end
+
+	def direct_comparison
+		0
+		# tied = league.teams.select { |team| team.score == self.score && team.points == self.points }
+		# [
+		# 	white_matches.where(black_team_id: tied.map(&:id)).map(&:white_score) + black_matches.where(white_team_id: tied.map(&:id)).map(&:black_score).sum,
+		# 	white_matches.where(black_team_id: tied.map(&:id)).map(&:white_points) + black_matches.where(white_team_id: tied.map(&:id)).map(&:black_points).sum
+		# ]
 	end
 
 end

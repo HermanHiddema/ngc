@@ -2,8 +2,6 @@ class MatchesController < ApplicationController
 	before_action :set_match, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@season = Season.find(params[:season_id]) if params[:season_id]
-		@season ||= Season.last
 		@matches = @season.matches.order(:playing_date)
 	end
 

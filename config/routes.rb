@@ -10,7 +10,16 @@ Rails.application.routes.draw do
   resources :leagues
   resources :clubs
 
-  resources :seasons
+  resources :seasons do
+    resources :leagues
+    resources :teams
+    resources :matches
+    resources :participants
+  end
+
+  resources :leagues do
+    resources :teams
+  end
 
   root to: 'leagues#index'
 

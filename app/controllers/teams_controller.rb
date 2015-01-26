@@ -2,7 +2,7 @@ class TeamsController < ApplicationController
 	before_action :set_team, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@teams = Team.all.includes(:league, :club, team_members: :participant).order(:name)
+		@teams = @season.teams.includes(:league, :club, team_members: :participant).order(:name)
 	end
 
 	def show
@@ -11,7 +11,7 @@ class TeamsController < ApplicationController
 	end
 
 	def new
-		@team = Team.new
+		@team = Team.new(params.permit(:league_id))
 		3.times do |i| 
 			@team.team_members.build(board_number: i+1)
 		end

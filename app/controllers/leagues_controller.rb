@@ -2,8 +2,6 @@ class LeaguesController < ApplicationController
 	before_action :set_league, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@season = Season.find(params[:season_id]) if params[:season_id]
-		@season ||= Season.last
 		@leagues = @season.leagues.order(:order).includes(:teams, matches: :games)
 		@matches = @season.matches.includes(:black_team, :white_team, :games)
 	end
@@ -14,7 +12,7 @@ class LeaguesController < ApplicationController
 	end
 
 	def new
-		@league = League.new
+		@league = @season.leagues.build
 	end
 
 	def edit

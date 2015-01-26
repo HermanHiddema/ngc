@@ -13,5 +13,5 @@
 	= @venue.playing_time
 
 %h3 Wedstrijden
-= render partial: 'matches/list', locals: { matches: @venue.matches.order(:playing_date, :playing_time) }
+= render partial: 'matches/list', locals: { matches: @matches.order(:playing_date, :playing_time) }
 

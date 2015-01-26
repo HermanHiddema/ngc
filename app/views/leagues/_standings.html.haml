@@ -12,18 +12,19 @@
 				= link_to team1 do
 					%span.show-for-medium-up= team1.name
 					%span.hide-for-medium-up= team1.abbrev
-			- teams.each do |team2|
-				- if team1.id == team2.id
-					%td &times;
-				- else
-					- match, result, status, venue = league.standings[team1.id][team2.id]
-					%td{class: status}
-						= link_to match, title: venue.name do
-							- if result
-								= result
-							-else 
-								%small= match.playing_date.strftime("%e/%-m")
-			%th= team1.score
+				- teams.each do |team2|
+					- if team1.id == team2.id
+						%td &times;
+					- else
+						- match, result, status, venue = league.standings[team1.id][team2.id]
+						%td{class: status}
+							- if match
+								= link_to match, title: venue.name do
+									- if result
+										= result
+									- else 
+										%small= match.playing_date.strftime("%e/%-m")
+				%th= team1.score
 			%th= team1.points
 	- if @fill_rows_upto
 		- (@fill_rows_upto - teams.length).times do

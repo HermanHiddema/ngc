@@ -90,17 +90,17 @@ class League < ActiveRecord::Base
 		table = Hash.new
 		teams.each do |team|
 			table[team.id] = Hash.new
-			table[team.id][:matches] = Array.new
+			table[team.id][:matches] = Hash.new
 		end
 		pairing.each do |round|
 			round.each do |team1, team2|
 				match = Match.find_by_teams(team1, team2)
-				table[team1.id][:matches] << match
-				table[team2.id][:matches] << match
-				match.games.each do |game|
-					table[match.black_team_id][game.black_id]
-				end
+				table[team1.id][:matches][match.id] = match
+				table[team2.id][:matches][match.id] = match
 			end
+		end
+		teams.each do |team|
+			players = (team.black_matches.map(&:games).map(&:black_player).map(&:id) + team.white_matches.map(&:games).map(&:white_player).map(&:id)).flatten.uniq
 		end
 	end
 

@@ -7,6 +7,7 @@ class VenuesController < ApplicationController
 	end
 
 	def show
+		@matches = @venue.matches.joins(:league).where(leagues: { season_id: @season })
 	end
 
 	def new

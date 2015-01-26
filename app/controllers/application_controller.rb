@@ -4,4 +4,11 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery with: :exception
 	before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
+	before_action :set_current_season
+
+	def set_current_season
+		@season = Season.find(params[:season_id]) if params[:season_id]
+		@season ||= Season.last
+	end
+
 end

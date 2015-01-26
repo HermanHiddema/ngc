@@ -2,6 +2,12 @@ nl:
   edit: Bewerken
   simple_form:
     labels:
+      season:
+        name: Naam
+      league:
+        season: Seizoen
+        name: Naam
+        order: Volgorde
       club:
         abbrev: Afkorting
         name: Naam
@@ -10,6 +16,7 @@ nl:
         name: Naam
         league: Poule
         club: Club
+        participant: Speler
       participant:
         lastname: Achternaam
         firstname: Voornaam

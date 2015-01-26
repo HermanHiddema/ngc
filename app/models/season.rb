@@ -7,7 +7,7 @@ class Season < ActiveRecord::Base
 
 	def results
 		res = Hash.new
-		games.each do |game|
+		games.reject(&:forfeit?).each do |game|
 			res[game.black_id] ||= Array.new
 			res[game.white_id] ||= Array.new
 			free = 0
@@ -27,6 +27,7 @@ class Season < ActiveRecord::Base
 		res.map.with_index do |(pid,games), i|
 			"#{i+1}\t" + 
 			"%-30s" % (participants.find(pid).lastname + ' ' + participants.find(pid).firstname) + "\t" +
+			pa
 			games.map do |game|
 				"#{game[3]}#{game[2]}"
 			end.join("\t")

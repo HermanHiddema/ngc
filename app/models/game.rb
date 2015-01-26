@@ -21,33 +21,43 @@ class Game < ActiveRecord::Base
 	end
 
 	def color_of(player)
-		return :black if black_player == player
-		return :white if white_player == player
+		return :black if black_player.id == player.id
+		return :white if white_player.id == player.id
 		nil
 	end
 
 	def result
-		@result ||= if black_points == 1 && white_points == 1
-			"jigo"
-		elsif black_points.nil? && white_points.nil? 
-			"?-?"
-		else
-			"#{black_points/2}-#{white_points/2}#{reason}"
-		end
+		@result ||= case black_points
+			when 0 then '0'
+			when 1 then '½'
+			when 2 then '1'
+			else '?'
+		end + '-' + case white_points
+			when 0 then '0'
+			when 1 then '½'
+			when 2 then '1'
+			else '?'
+		end + "#{reason}"
 	end
 
 	def result=(value)
-		case value
-		when /([01])-([01])/
-			self.black_points = $1.to_i * 2
-			self.white_points = $2.to_i * 2
+		if value =~ /^(.)-(.)(!?)/
+			self.black_points = case $1
+				when '0' then 0
+				when '½' then 1
+				when '1' then 2
+				else nil
+			end
+			self.white_points = case $2
+				when '0' then 0
+				when '½' then 1
+				when '1' then 2
+				else nil
+			end
+			self.reason = ($3 == '!') ? '!' : nil
 		else
 			self.black_points = nil
 			self.white_points = nil
-		end
-		if value.include? '!'
-			self.reason = '!'
-		else
 			self.reason = nil
 		end
 		@result = nil
@@ -55,6 +65,7 @@ class Game < ActiveRecord::Base
 	end
 
 	def black_score
+		return 0 if black_points.nil? || white_points.nil?
 		@black_score ||= case
 		when black_points > white_points then 1
 		when white_points > black_points then 0
@@ -63,6 +74,7 @@ class Game < ActiveRecord::Base
 	end
 
 	def white_score
+		return 0 if black_points.nil? || white_points.nil?
 		@white_score ||= case
 		when white_points > black_points then 1
 		when black_points > white_points then 0
@@ -109,4 +121,5 @@ class Game < ActiveRecord::Base
 		a = 200 - (weaker_rating-100)/20.0 # a from the EGF GoR formula
 		1.0 / (Math.exp(rd/a) + 1)
 	end
+
 end

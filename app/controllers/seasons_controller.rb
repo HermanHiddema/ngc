@@ -8,10 +8,9 @@ class SeasonsController < ApplicationController
 	end
 
 	def show
-		@season = Season.last
 		respond_with do |format|
 			format.text { render text: @season.results.join("\n") }
-			format.html { redirect_to leagues_url }
+			format.html { redirect_to season_leagues_url(@season) }
 		end
 	end
 
