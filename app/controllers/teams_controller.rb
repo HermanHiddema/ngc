@@ -64,6 +64,6 @@ class TeamsController < ApplicationController
 		end
 
 		def team_params
-			params.require(:team).permit(:name, :abbrev, :club_id, :league_id, team_members_attributes: [:id, :board_number, :participant_id])
+			params.require(:team).permit(:name, :abbrev, :club_id, :league_id, :captain_id, team_members_attributes: [:id, :board_number, :participant_id])
 		end
 end
