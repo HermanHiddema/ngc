@@ -4,10 +4,10 @@
 	= f.error_notification
 
 	.form-inputs
-		= f.association :league
+		= f.association :league, collection: @leagues
 		= f.association :venue
-		= f.association :black_team
-		= f.association :white_team
+		= f.association :black_team, collection: @teams
+		= f.association :white_team, collection: @teams
 		= f.input :playing_date, as: :string, input_html: { class: :datepicker }
 		= f.input :playing_time
 

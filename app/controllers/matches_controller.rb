@@ -10,9 +10,12 @@ class MatchesController < ApplicationController
 	end
 
 	def new
-		@league = League.find(params[:league_id]) if params[:league_id]
+		@league = @season.leagues.find(params[:league_id]) if params[:league_id]
 		@match = @league ? @league.matches.build : Match.new
-		@teams = @league ? @league.teams : Team.all
+		@match.black_team_id = params[:black_team_id]
+		@match.white_team_id = params[:white_team_id]
+		@leagues = @season.leagues
+		@teams = @league ? @league.teams : Team.where(league_id: @leagues.pluck(:id))
 	end
 
 	def edit
