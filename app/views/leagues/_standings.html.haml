@@ -16,9 +16,13 @@
 					- if team1.id == team2.id
 						%td &times;
 					- else
-						- match, result, status, venue = league.standings[team1.id][team2.id]
-						%td{class: status}
-							- if match
+						- if league.standings[team1.id][team2.id].empty?
+							%td
+								-if current_user
+									= link_to '>>', new_match_path
+						- else
+							- match, result, status, venue = league.standings[team1.id][team2.id]
+							%td{class: status}
 								= link_to match, title: venue.name do
 									- if result
 										= result
