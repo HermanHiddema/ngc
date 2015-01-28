@@ -1,5 +1,5 @@
-%tr
-	%td= game.board_number
-	%td{colspan: 5}= game.black_player.name
-	%td{colspan: 5}= game.white_player.name
-	%td= game.result
+.row.collapse
+	.small-5.columns= game.black_player.name
+	.small-1.columns -
+	.small-5.columns= game.white_player.name
+	.small-1.columns= game.result

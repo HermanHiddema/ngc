@@ -25,4 +25,5 @@
 %p
 	- team.team_members.each_with_index do |member, index|
 		.member
-			#{index+1}. #{member.firstname} #{member.lastname} (#{member.rating})
+			#{index+1}.
+			= link_to member.name member.participant

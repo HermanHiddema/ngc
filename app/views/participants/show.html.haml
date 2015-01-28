@@ -1,14 +1,19 @@
 %h1
-	= @participant.firstname
-	= @participant.lastname
-	(#{@participant.rating})
+	= @participant.name
 %p
+	Seizoen: #{@participant.season.name}
+	%br
 	Club:
 	= link_to @participant.club.name, @participant.club
-%p
-	Partijen:
-	%table
-		= render @games
+	%br
+	- if @participant.team_member
+		Team:
+		= link_to @participant.team_member.team.name, @participant.team_member.team
+	%br
+	Individuele prestatie: #{@participant.rating_performance}
+
+%h4 Partijen
+= render @games
 
 - if current_user
 	= link_to 'Deelnemer bewerken', edit_participant_path(@participant), class: 'button'

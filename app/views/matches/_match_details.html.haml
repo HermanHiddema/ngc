@@ -1,11 +1,19 @@
-= match.played? ? 'Gespeeld' : 'Gepland'
-#{l match.playing_date, format: :short} te
-= link_to match.venue.name, match.venue
-%table
-	%tr
-		%th Bord
-		%th{colspan:5} #{match.black_team.name}
-		%th{colspan:5} #{match.white_team.name}
-		%th #{match.result}
-	= render match.games.order(:board_number)
+%p
+	%h5
+		= match.played? ? 'Gespeeld' : 'Gepland'
+		#{l match.playing_date, format: :short} te
+		#{link_to match.venue.name, match.venue}:
+	.row.collapse
+		%b.small-1.columns #
+		.small-11.columns
+			.row.collapse
+				%b.small-5.columns #{match.black_team.name}
+				%b.small-1.columns -
+				%b.small-5.columns #{match.white_team.name}
+				%b.small-1.columns #{match.result}
+	- match.games.order(:board_number).each_with_index do |game,index|
+		.row.collapse
+			.small-1.columns #{index+1}
+			.small-11.columns
+				= render game
 

@@ -28,4 +28,8 @@ class Participant < ActiveRecord::Base
 		black_games.played.map(&:black_rating_change).sum + white_games.played.map(&:white_rating_change).sum
 	end
 
+	def rating_performance
+		"#{(rating_change * 100).round(2)}%"
+	end
+
 end
