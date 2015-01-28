@@ -5,6 +5,10 @@
 %p
 	Club:
 	= link_to @participant.club.name, @participant.club
+%p
+	Partijen:
+	%table
+		= render @games
 
 - if current_user
 	= link_to 'Deelnemer bewerken', edit_participant_path(@participant), class: 'button'

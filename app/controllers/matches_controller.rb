@@ -28,11 +28,11 @@ class MatchesController < ApplicationController
 		end
 		@games = @match.games.order(:board_number)
 		if params[:all]
-			@black_players = Participant.all
-			@white_players = Participant.all
+			@black_players = @season.participants
+			@white_players = @season.participants
 		else
-			@black_players = Participant.where('club_id IN (?)', @match.black_team.club.teams.includes(team_members: :participant).map { |t| t.team_members.map { |m| m.participant.club_id } }.flatten)
-			@white_players = Participant.where('club_id IN (?)', @match.white_team.club.teams.includes(team_members: :participant).map { |t| t.team_members.map { |m| m.participant.club_id } }.flatten)
+			@black_players = @season.participants.where('club_id IN (?)', @match.black_team.club.teams.includes(team_members: :participant).map { |t| t.team_members.map { |m| m.participant.club_id } }.flatten)
+			@white_players = @season.participants.where('club_id IN (?)', @match.white_team.club.teams.includes(team_members: :participant).map { |t| t.team_members.map { |m| m.participant.club_id } }.flatten)
 		end
 		@black_players = @black_players.order('rating DESC')
 		@white_players = @white_players.order('rating DESC')
