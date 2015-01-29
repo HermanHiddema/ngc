@@ -14,7 +14,11 @@ class Participant < ActiveRecord::Base
 
 	def name
 		"#{firstname.gsub('_',' ')} #{lastname.gsub('_',' ')} (#{rating})" 
-	end		
+	end
+
+	def fullname
+		"#{firstname.gsub('_',' ')} #{lastname.gsub('_',' ')}"
+	end
 
 	def games
 		Game.where('black_id = ? OR white_id = ?', self.id, self.id)

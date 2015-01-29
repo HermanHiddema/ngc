@@ -4,7 +4,7 @@
 			%span.show-for-medium-up= l match.playing_date, format: '%a'
 			= l match.playing_date, format: :short
 			%span.show-for-medium-up= match.playing_time
-			= link_to match.venue.name, match.venue
+			= link_to match.venue.city, match.venue
 	%td
 		= link_to match.black_team do
 			%span.show-for-medium-up= match.black_team.name 

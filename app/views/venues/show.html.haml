@@ -1,16 +1,16 @@
 %h1
-	#{@venue.name} (#{link_to @venue.club.name, @venue.club})
+	#{@venue.name} (#{@venue.address}, #{@venue.city})
+Speelavond: Iedere
+= ['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'][@venue.playing_day]
+om
+= @venue.playing_time
 
-= markdown @venue.info || ''
+%p
+	= markdown @venue.info || ''
 
 - if current_user
 	= link_to 'Lokatie bewerken', edit_venue_path(@venue), class: 'button'
 
-%p
-	Speelavond: Iedere
-	= ['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'][@venue.playing_day]
-	om
-	= @venue.playing_time
 
 %h3 Wedstrijden
 = render partial: 'matches/list', locals: { matches: @matches.order(:playing_date, :playing_time) }

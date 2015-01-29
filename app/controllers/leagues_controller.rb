@@ -9,6 +9,7 @@ class LeaguesController < ApplicationController
 	def show
 		@participants = Participant.joins(:team_member).where('team_members.team_id' => @league.teams.pluck(:id))
 		@participants = @participants.to_a.sort_by(&:rating_change).reverse
+		@teams = @league.teams
 	end
 
 	def new

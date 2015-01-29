@@ -1,8 +1,17 @@
-%tr
-	%td= link_to participant.lastname, participant
-	%td= link_to participant.firstname, participant
-	%td= link_to participant.club.name, participant.club
-	%td= participant.rating
+.row
+	.small-8.medium-5.columns
+		-if participant.games.count > 0
+			%b= link_to participant.fullname, participant
+		-else
+			= link_to participant.fullname, participant
 	- if current_user
-		%td
-			= participant.rating_performance
+		.small-2.medium-1.columns= participant.rating
+		.small-2.medium-1.columns= participant.rating_performance
+	- else
+		.small-4.medium-2.columns= participant.rating
+	.medium-5.columns.hide-for-small
+		- if participant.team_member
+			%b= link_to participant.team_member.team.name, participant.team_member.team
+		- elsif @show_club
+			= link_to participant.club.name, participant.club
+

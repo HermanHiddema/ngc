@@ -2,7 +2,7 @@
 	%h5
 		= match.played? ? 'Gespeeld' : 'Gepland'
 		#{l match.playing_date, format: :short} te
-		#{link_to match.venue.name, match.venue}:
+		#{link_to match.venue.city, match.venue}:
 	.row.collapse
 		%b.small-1.columns #
 		.small-11.columns

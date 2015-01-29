@@ -1,17 +1,23 @@
 %h1= @league.name
 
-%h3 Stand
+%p
+	%h3 Stand
+	= render partial: 'standings', locals: { league: @league }
 
-= render partial: 'standings', locals: { league: @league }
+%p
+	%h3 Rooster
+	= render partial: 'matches/list', locals: { matches: @league.matches.order(:playing_date, :playing_time) }
 
-%h3 Rooster
-
-= render partial: 'matches/list', locals: { matches: @league.matches.order(:playing_date, :playing_time) }
+%p
+	%h3 Teams
+	= render @teams
 
 - if current_user
 
-	= render partial: 'participants/list'
+	%p
+		%h3 Spelers
+		= render @participants
 
-	= link_to 'Poule Bewerken', edit_league_path(@league), class: 'button'
-
-	= link_to 'Team Toevoegen', new_league_team_path(@league), class: 'button'
+	%p
+		= link_to 'Poule Bewerken', edit_league_path(@league), class: 'button'
+		= link_to 'Team Toevoegen', new_league_team_path(@league), class: 'button'

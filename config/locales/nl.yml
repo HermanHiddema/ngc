@@ -26,6 +26,10 @@ nl:
         league: Poule
         match_teams:
           color: Kleur
+      venue:
+        name: Naam
+        address: Adres
+        city: Plaatsnaam
   time:
     formats:
        medium: '%e %b %Y %H:%M'

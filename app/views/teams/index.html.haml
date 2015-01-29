@@ -1,8 +1,8 @@
 %h1 Teams
+%p
+	= render @teams
 
-= render partial: 'teams/list', locals: { teams: @teams }
-
-%br
 
 - if current_user
-	= link_to 'Team Toevoegen', new_team_path, class: 'button'
+	%p
+		= link_to 'Team Toevoegen', new_team_path, class: 'button'

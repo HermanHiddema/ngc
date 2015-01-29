@@ -1,21 +1,8 @@
 %h1 Speellokaties
 
-%table
-	%tr
-		%th Naam
-		%th Speeldag
-		%th Starttijd
-		%th{colspan:2} Info
-		/ %th
-
-	- @venues.each do |venue|
-		%tr
-			%td= link_to venue.name, venue
-			%td= ['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'][venue.playing_day]
-			%td= venue.playing_time
-			%td{colspan:2}
-				#{(venue.info || '')[0..100]}...
-%br
+%p
+	= render @venues
 
 - if current_user
-	= link_to 'Lokatie Toevoegen', new_venue_path, class: 'button'
+	%p
+		= link_to 'Lokatie Toevoegen', new_venue_path, class: 'button'

@@ -12,15 +12,17 @@
 - if current_user
 	= link_to 'Bewerken', edit_club_path(@club), class: :button
 
-%h3 Speellokatie#{@club.venues.count > 1 ? 's' : ''}
-- @club.venues.order(:name).each do |venue|
-	%h4
-		#{link_to venue.name, venue}:
-		#{['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'][venue.playing_day]} om #{venue.playing_time}
-	= markdown venue.info || ''
+- if @club.venues.present?
+	%h3 Speellokatie#{@club.venues.count > 1 ? 's' : ''}
+	- @club.venues.order(:name).each do |venue|
+		%h4
+			#{link_to venue.name, venue}:
+			#{['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'][venue.playing_day]} om #{venue.playing_time}
+		#{venue.address}, #{venue.city}
+		= markdown venue.info || ''
 
 %h3 Teams
-= render partial: 'teams/list', locals: { teams: @teams }
+= render @teams
 %h3 Wedstrijden
 = render partial: 'matches/list', locals: { matches: @matches }
 %h3 Spelers
