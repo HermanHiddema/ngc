@@ -1,0 +1,6 @@
+.row.collapse
+	.medium-3.small-7.columns= link_to venue.city, venue
+	.medium-2.small-3.columns= ['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'][venue.playing_day]
+	.medium-1.small-2.columns= venue.playing_time
+	.medium-6.small-12.columns
+		#{venue.name}, #{venue.address}
