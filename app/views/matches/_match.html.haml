@@ -6,7 +6,7 @@
 			.small-6.columns
 				\-
 				= match.white_team.name
-	.small-1.column= match.result
+	.small-1.column= link_to match.result, match
 	.medium-3.show-for-medium-up.columns
 		- if @show.include? :date 
 			= l match.playing_date, format: :short
