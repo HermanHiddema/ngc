@@ -1,7 +1,7 @@
 %p
 	%h5
 		= match.played? ? 'Gespeeld' : 'Gepland'
-		#{l match.playing_date, format: :short} te
+		#{l match.playing_date, format: :short_with_day} om #{match.playing_time} te
 		#{link_to match.venue.city, match.venue}:
 	%strong.row.collapse
 		.small-1.columns Bord
