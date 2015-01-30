@@ -3,7 +3,7 @@
 	%h3 Stand
 	= render partial: 'standings', locals: { league: @league }
 %section
-	%h3 Rooster
+	%h3 Wedstrijden
 	= render @matches, :@show => [:venue, :date]
 %hr
 %section
