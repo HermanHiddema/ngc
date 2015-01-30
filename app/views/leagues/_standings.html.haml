@@ -27,7 +27,7 @@
 									- if result
 										= result
 									- else 
-										%small= match.playing_date.strftime("%e/%-m")
+										%span{style:'font-size:85%'}= match.playing_date.strftime("%e/%-m")
 				%th= team1.score
 			%th= team1.points
 	- if @fill_rows_upto
