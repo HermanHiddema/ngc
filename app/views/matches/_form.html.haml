@@ -1,15 +1,8 @@
 .form-inputs
-	%table
-		%tr
-			%th
-				Zwart:
-				= @match.black_team.try(:name)
-			%th
-				Wit:
-				= @match.white_team.try(:name)
-			%th Resultaat
-		= f.simple_fields_for :games, @games do |g|
-			%tr
-				%td= g.association :black_player, label: false, collection: @black_players
-				%td= g.association :white_player, label: false, collection: @white_players
-				%td= g.input :result, label: false, as: :select, collection: ['?-?', '1-0', '0-1', '1-0!', '0-1!', '0-0'], default: '?-?'
+	.small-5.columns Zwart: #{@match.black_team.try(:name)}
+	.small-5.columns Wit: #{@match.white_team.try(:name)}
+	.small-2.columns Resultaat
+	= f.simple_fields_for :games, @games do |g|
+		.small-5.columns= g.association :black_player, label: false, collection: @black_players
+		.small-5.columns= g.association :white_player, label: false, collection: @white_players
+		.small-2.columns= g.input :result, label: false, as: :select, collection: ['?-?', '1-0', '0-1', '1-0!', '0-1!', '0-0'], default: '?-?'

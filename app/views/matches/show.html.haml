@@ -1,7 +1,7 @@
 %h2 #{@match.black_team.name} - #{@match.white_team.name}
-%p#notice= notice
-
-%p
+%section
 	= render partial: 'match_details', locals: {match: @match}
-
-= link_to 'Bewerken', edit_match_path(@match), class: 'button'
+- if current_user
+	%hr
+	%section
+		= link_to 'Bewerken', edit_match_path(@match), class: 'button'

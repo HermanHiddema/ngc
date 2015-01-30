@@ -1,20 +1,19 @@
-%h1
-	= @person.firstname
-	= @person.lastname
+%h2= @person.name
 
-%p
-	%h3 Gegevens
+%section
 	%br
-	Email:
+	%strong Email:
 	= @person.email
 	%br
-	Email 2:
+	%strong Email 2:
 	= @person.email2
 	%br
-	Telefoon:
+	%strong Telefoon:
 	= @person.phone
 	%br
-	Telefoon 2:
+	%strong Telefoon 2:
 	= @person.phone2
-
-= link_to 'Persoon Bewerken', edit_person_path(@person), class: 'button'
+- if current_user
+	%hr
+	%section
+		= link_to 'Persoon Bewerken', edit_person_path(@person), class: 'button'

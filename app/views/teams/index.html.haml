@@ -1,8 +1,7 @@
-%h1 Teams
-%p
+%h2 Teams
+%section
 	= render @teams
-
-
 - if current_user
-	%p
+	%hr
+	%section
 		= link_to 'Team Toevoegen', new_team_path, class: 'button'

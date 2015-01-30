@@ -1,20 +1,7 @@
-%h1 Listing seasons
-
-%table
-	%tr
-		%th Name
-		%th
-		%th
-		%th
-
-	- @seasons.each do |season|
-		%tr
-			%td= season.name
-			%td= link_to 'Show', season
-			%td= link_to 'Edit', edit_season_path(season)
-			%td= link_to 'Destroy', season, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
--if current_user
-	= link_to 'New Season', new_season_path, class: 'button'
+%h2 Seizoenen
+%section
+	= render @seasons
+- if current_user
+	%hr
+	%section
+		= link_to 'Nieuw Seizoen', new_season_path, class: 'button'

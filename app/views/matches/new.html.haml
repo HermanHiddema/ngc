@@ -1,15 +1,15 @@
-%h1 Nieuwe wedstrijd
+%h2 Nieuwe wedstrijd
+%section
+	= simple_form_for(@match) do |f|
+		= f.error_notification
 
-= simple_form_for(@match) do |f|
-	= f.error_notification
+		.form-inputs
+			= f.association :league, collection: @leagues
+			= f.association :venue
+			= f.association :black_team, collection: @teams
+			= f.association :white_team, collection: @teams
+			= f.input :playing_date, as: :string, input_html: { class: :datepicker }
+			= f.input :playing_time
 
-	.form-inputs
-		= f.association :league, collection: @leagues
-		= f.association :venue
-		= f.association :black_team, collection: @teams
-		= f.association :white_team, collection: @teams
-		= f.input :playing_date, as: :string, input_html: { class: :datepicker }
-		= f.input :playing_time
-
-	.form-actions
-		= f.submit 'Opslaan', class: 'button'
+		.form-actions
+			= f.submit 'Opslaan', class: 'button'

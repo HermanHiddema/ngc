@@ -1,12 +1,15 @@
-%h1 Clubs
+%h2 Clubs
 
-.row
-	%strong.small-6.medium-3.columns Naam
-	%strong.small-3.medium-1.columns <span>Afk<span class='show-for-large-up'>orting</span></span>
-	%strong.small-3.medium-1.columns Teams
-	%strong.small-6.medium-4.columns.show-for-medium-up Website
-	%strong.small-6.medium-3.columns.show-for-medium-up Contactpersoon
-= render @clubs
+%section
+	.row
+		%strong.small-6.medium-3.columns Naam
+		%strong.small-3.medium-1.columns <span>Afk<span class='show-for-large-up'>orting</span></span>
+		%strong.small-3.medium-1.columns Teams
+		%strong.small-6.medium-4.columns.show-for-medium-up Website
+		%strong.small-6.medium-3.columns.show-for-medium-up Contactpersoon
+	= render @clubs
 
 - if current_user
-	= link_to 'Nieuwe Club', new_club_path, class: 'button'
+	%hr
+	%section
+		= link_to 'Club Toevoegen', new_club_path, class: 'button'

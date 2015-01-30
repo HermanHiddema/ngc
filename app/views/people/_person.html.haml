@@ -2,7 +2,7 @@
 = person.lastname
 %br
 Email:
-= [person.email, person.email2].compact.join(' of ')
+= [person.email, person.email2].reject(&:blank?).join(' of ')
 %br
 Telefoon:
-= [person.phone, person.phone2].compact.join(' of ')
+= [person.phone, person.phone2].reject(&:blank?).join(' of ')

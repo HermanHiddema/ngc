@@ -1,7 +1,7 @@
-%h1 Alle deelnemers
-
-= link_to 'Deelnemer Toevoegen', new_participant_path, class: 'button'
-
-%br
-
-= render 'list'
+%h2 Alle deelnemers
+%section
+	= render @participants
+- if current_user
+	%hr
+	%section
+		= link_to 'Deelnemer Toevoegen', new_participant_path, class: 'button'

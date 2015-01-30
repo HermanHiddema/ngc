@@ -1,23 +1,21 @@
-%h1= @league.name
-
-%p
+%h2= @league.name
+%section
 	%h3 Stand
 	= render partial: 'standings', locals: { league: @league }
-
-%p
+%section
 	%h3 Rooster
 	= render @matches, :@show => [:venue, :date]
-
-%p
+%hr
+%section
 	%h3 Teams
 	= render @teams
 
 - if current_user
-
-	%p
+	%hr
+	%section
 		%h3 Spelers
 		= render @participants
-
-	%p
+	%hr
+	%section
 		= link_to 'Poule Bewerken', edit_league_path(@league), class: 'button'
 		= link_to 'Team Toevoegen', new_league_team_path(@league), class: 'button'

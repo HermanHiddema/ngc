@@ -1,14 +1,3 @@
-%h1 Partijen
-
-%table
-	%tr
-		%th Zwart
-		%th Wit
-		%th Uitslag
-
-	- @games.each do |game|
-		%tr
-			%td= game.black_player.name
-			%td= game.white_player.name
-			%td= game.result
-%br
+%h2 Partijen
+%section
+	= render @games

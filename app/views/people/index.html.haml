@@ -1,25 +1,7 @@
-%h1 Listing people
-
-%table
-  %tr
-    %th Firstname
-    %th Lastname
-    %th Egd pin
-    %th Email
-    %th
-    %th
-    %th
-
-  - @people.each do |person|
-    %tr
-      %td= person.firstname
-      %td= person.lastname
-      %td= person.egd_pin
-      %td= person.email
-      %td= link_to 'Show', person
-      %td= link_to 'Edit', edit_person_path(person)
-      %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Person', new_person_path
+%h2 Personen
+%section
+	=render @people
+- if current_user
+	%hr
+	%section
+		= link_to 'New Person', new_person_path

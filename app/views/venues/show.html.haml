@@ -1,17 +1,21 @@
-%h1
-	#{@venue.name} (#{@venue.address}, #{@venue.city})
-Speelavond: Iedere
-= ['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'][@venue.playing_day]
-om
-= @venue.playing_time
-
-%p
+%h2 #{@venue.name} (#{@venue.address}, #{@venue.city})
+%section
+	Speelavond: Iedere
+	= ['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'][@venue.playing_day]
+	om
+	= @venue.playing_time
+%hr
+%section
 	= markdown @venue.info || ''
 
 - if current_user
-	= link_to 'Lokatie bewerken', edit_venue_path(@venue), class: 'button'
+	%hr
+	%section
+		= link_to 'Lokatie bewerken', edit_venue_path(@venue), class: 'button'
 
 
-%h3 Wedstrijden
-= render @matches.order(:playing_date, :playing_time), :@show => [:date]
+%hr
+%section
+	%h3 Wedstrijden
+	= render @matches.order(:playing_date, :playing_time), :@show => [:date]
 
