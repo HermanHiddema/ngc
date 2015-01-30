@@ -3,19 +3,4 @@
 	%p
 		%h5
 			%strong= l dt, format: :short_with_day
-		- matches.where(playing_date: dt).order(:playing_time, :venue_id, :black_team_id).each do |match|
-			.row.collapse
-				.small-11.medium-8.large-5.columns
-					.row.collapse
-						.small-6.columns= match.black_team.name
-						.small-6.columns
-							\-
-							= match.white_team.name
-				.small-1.column= match.result
-				.medium-3.large-6.show-for-medium-up.columns
-					Om
-					= match.playing_time
-					te
-					= link_to match.venue.city, match.venue
-
-
+		= render matches.where(playing_date: dt).order(:playing_time, :venue_id, :black_team_id), :@show => [:venue]

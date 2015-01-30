@@ -3,7 +3,7 @@ class VenuesController < ApplicationController
 
 	def index
 		@venues = Venue.all
-		@venues = @venues.order(:name)
+		@venues = @venues.order(:city)
 	end
 
 	def show

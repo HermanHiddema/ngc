@@ -13,5 +13,5 @@ om
 
 
 %h3 Wedstrijden
-= render partial: 'matches/list', locals: { matches: @matches.order(:playing_date, :playing_time) }
+= render @matches.order(:playing_date, :playing_time), :@show => [:date]
 

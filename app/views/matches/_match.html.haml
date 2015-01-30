@@ -1,16 +1,15 @@
-%tr
-	%td
-		%span
-			%span.show-for-medium-up= l match.playing_date, format: '%a'
+- @show ||= []
+.row.collapse
+	.small-11.medium-8.columns
+		.row.collapse
+			.small-6.columns= match.black_team.name
+			.small-6.columns
+				\-
+				= match.white_team.name
+	.small-1.column= match.result
+	.medium-3.show-for-medium-up.columns
+		- if @show.include? :date 
 			= l match.playing_date, format: :short
-			%span.show-for-medium-up= match.playing_time
+		= match.playing_time
+		- if @show.include? :venue 
 			= link_to match.venue.city, match.venue
-	%td
-		= link_to match.black_team do
-			%span.show-for-medium-up= match.black_team.name 
-			%span.hide-for-medium-up= match.black_team.abbrev 
-	%td
-		= link_to match.white_team do
-			%span.show-for-medium-up= match.white_team.name 
-			%span.hide-for-medium-up= match.white_team.abbrev 
-	%td= match.played? ? match.result : link_to('?-?', edit_match_path(match))
