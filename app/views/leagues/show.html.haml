@@ -6,7 +6,7 @@
 
 %p
 	%h3 Rooster
-	= render partial: 'matches/list', locals: { matches: @league.matches.order(:playing_date, :playing_time) }
+	= render @matches, :@show => [:venue, :date]
 
 %p
 	%h3 Teams

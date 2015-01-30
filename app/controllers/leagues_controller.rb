@@ -10,6 +10,7 @@ class LeaguesController < ApplicationController
 		@participants = Participant.joins(:team_member).where('team_members.team_id' => @league.teams.pluck(:id))
 		@participants = @participants.to_a.sort_by(&:rating_change).reverse
 		@teams = @league.teams
+		@matches = @league.matches.order(:playing_date, :playing_time)
 	end
 
 	def new
