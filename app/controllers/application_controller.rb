@@ -7,14 +7,15 @@ class ApplicationController < ActionController::Base
 	before_action :set_current_season
 
 	def set_current_season
-		if request.host =~ /^((voor|na)jaar-\d{4})/
+		if request.host =~ /^((voor|na)jaar-\d{4})\.(.*)/
 			season_name = $1.capitalize.gsub('-',' ')
 			@season = Season.find_by_name(season_name)
+			@host = $2
 		end
 
-
-		@season = Season.find(params[:season_id]) if params[:season_id]
 		@season ||= Season.last
+		@host ||= request.host.gsub('www.','')
+		@port = request.port
 	end
 
 end

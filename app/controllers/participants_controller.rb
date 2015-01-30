@@ -6,7 +6,7 @@ class ParticipantsController < ApplicationController
 	end
 
 	def show
-    @games = @participant.games
+		@games = @participant.games
 	end
 
 	def new

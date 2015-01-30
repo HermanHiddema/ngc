@@ -3,23 +3,13 @@ Rails.application.routes.draw do
 
   resources :people
   resources :venues
-  resources :games
+  resources :games, only: [:index]
   resources :participants
   resources :matches
   resources :teams
   resources :leagues
   resources :clubs
-
-  resources :seasons do
-    resources :leagues
-    resources :teams
-    resources :matches
-    resources :participants
-  end
-
-  resources :leagues do
-    resources :teams
-  end
+  resources :seasons
 
   root to: 'leagues#index'
 
