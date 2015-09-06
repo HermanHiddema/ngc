@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 	# Prevent CSRF attacks by raising an exception.
 	# For APIs, you may want to use :null_session instead.
 	protect_from_forgery with: :exception
-	before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
 	before_action :set_current_season
 
@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
 		@season ||= Season.last
 		@host ||= request.host.gsub('www.','')
 		@port = request.port
+	end
+
+	def require_admin!
+		head :unauthorized
 	end
 
 end

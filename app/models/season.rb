@@ -5,6 +5,12 @@ class Season < ActiveRecord::Base
 	has_many :participants
 	has_many :games, through: :matches
 
+	before_validation :update_slug
+
+	def update_slug
+		self.slug = name.gsub(/[^A-z0-9]/,'-').downcase
+	end
+
 	def results
 		res = Hash.new
 		games.reject(&:forfeit?).each do |game|

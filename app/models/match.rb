@@ -4,7 +4,7 @@ class Match < ActiveRecord::Base
 
 	belongs_to :black_team, class_name: 'Team'
 	belongs_to :white_team, class_name: 'Team'
-	has_many :games
+	has_many :games, dependent: :destroy
 
 	accepts_nested_attributes_for :games
 
