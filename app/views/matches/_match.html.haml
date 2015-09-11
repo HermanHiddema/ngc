@@ -1,13 +1,21 @@
 - @show ||= []
 .row.collapse
-	.small-11.medium-8.columns
+	.small-4.medium-8.columns
 		.row.collapse
-			.small-6.columns= match.black_team.name
 			.small-6.columns
-				\-
-				= match.white_team.name
-	.small-1.column= link_to match.result, match
-	.medium-3.show-for-medium-up.columns
+				%span.hide-for-small
+					= match.black_team.name
+				%span.hide-for-medium-up
+					= match.black_team.abbrev
+			.small-6.columns
+				%span.hide-for-small
+					\-
+					= match.white_team.name
+				%span.hide-for-medium-up
+					= match.white_team.abbrev
+	.small-1.column
+		= link_to match.result, match
+	.small-7.medium-3.columns
 		- if @show.include? :date 
 			= l match.playing_date, format: :short
 		= match.playing_time
