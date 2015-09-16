@@ -15,7 +15,7 @@
 					= match.white_team.abbrev
 	.small-1.column
 		= link_to match.result, match
-	.small-7.medium-3.columns
+	.small-7.medium-3.columns.text-right
 		- if @show.include? :date 
 			= l match.playing_date, format: :short
 		= match.playing_time
