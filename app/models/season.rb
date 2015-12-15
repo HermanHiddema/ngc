@@ -33,7 +33,6 @@ class Season < ActiveRecord::Base
 		res.map.with_index do |(pid,games), i|
 			"#{i+1}\t" + 
 			"%-30s" % (participants.find(pid).lastname + ' ' + participants.find(pid).firstname) + "\t" +
-			pa
 			games.map do |game|
 				"#{game[3]}#{game[2]}"
 			end.join("\t")

@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def require_admin!
-		head :unauthorized
+		head :unauthorized unless current_user.admin?
 	end
 
 end
