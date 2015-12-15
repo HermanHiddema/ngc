@@ -42,7 +42,7 @@ class Season < ActiveRecord::Base
 			games.map do |game|
 				"#{game[3]}#{game[2]}"
 			end.join("\t") + "\t" +
-			(games.length...width).map { "0=" }.join("\t")
+			(games.length...width).map { "0=" }.join("\t").strip
 			# games.map do |game|
 			# 	"#{game}"
 			# end.join("\t")
