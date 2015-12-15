@@ -34,7 +34,7 @@ class Season < ActiveRecord::Base
 		width = res.map { |k,v| v.length }.max
 		res.map.with_index do |(pid,games), i|
 			p = participants.find(pid)
-			"#{i+1}\t" + 
+			("#{i+1}\t" + 
 			"%-30s" % (p.lastname + ' ' + p.firstname) + "\t" +
 			p.rank + "\t" + "NL" + "\t" + p.club.abbrev + "\t" +
 			"%.2f" % (100 * p.rating_change) + "\t" +
@@ -42,10 +42,7 @@ class Season < ActiveRecord::Base
 			games.map do |game|
 				"#{game[3]}#{game[2]}"
 			end.join("\t") + "\t" +
-			(games.length...width).map { "0=" }.join("\t").strip
-			# games.map do |game|
-			# 	"#{game}"
-			# end.join("\t")
+			(games.length...width).map { "0=" }.join("\t")).strip
 		end
 	end
 
