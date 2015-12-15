@@ -6,6 +6,7 @@
 		= f.input :lastname
 		= f.input :rating
 		= f.input :egd_pin
+		= f.input :rank, as: :string, input_html: { value: f.object.rank }
 		= f.association :club
 
 	.form-actions
