@@ -13,6 +13,7 @@ class Season < ActiveRecord::Base
 
 	def results
 		res = Hash.new
+		participants.select { |p| p.played_games.reject(&:forfeit?).length > 0 }.sort_by { |p| p.rating_change || 0 }.reverse.map { |p| res[p.id] ||= Array.new }
 		games.reject(&:forfeit?).each do |game|
 			res[game.black_id] ||= Array.new
 			res[game.white_id] ||= Array.new
@@ -30,13 +31,18 @@ class Season < ActiveRecord::Base
 				end
 			end
 		end
+		width = res.map { |k,v| v.length }.max
 		res.map.with_index do |(pid,games), i|
+			p = participants.find(pid)
 			"#{i+1}\t" + 
-			"%-30s" % (participants.find(pid).lastname + ' ' + participants.find(pid).firstname) + "\t" +
-			participants.find(pid).rank + "\t" +
+			"%-30s" % (p.lastname + ' ' + p.firstname) + "\t" +
+			p.rank + "\t" + "NL" + "\t" + p.club.abbrev + "\t" +
+			"%.2f" % (100 * p.rating_change) + "\t" +
+			games.select { |g| "#{g[2]}" == '+' }.length.to_s + "\t" +
 			games.map do |game|
 				"#{game[3]}#{game[2]}"
-			end.join("\t")
+			end.join("\t") + "\t" +
+			(games.length...width).map { "0=" }.join("\t")
 			# games.map do |game|
 			# 	"#{game}"
 			# end.join("\t")
