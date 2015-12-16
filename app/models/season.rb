@@ -49,6 +49,7 @@ class Season < ActiveRecord::Base
 				p.rank,
 				"NL",
 				p.club.abbrev,
+				p.team_member.present? ? p.team_member.board_number : 0,
 				(100 * p.rating_change).to_s[0..5],
 				games.select { |game| "#{game[2]}" == '+' }.length,
 				games.map { |game| "#{game[3]}#{game[2]}" },
@@ -56,6 +57,6 @@ class Season < ActiveRecord::Base
 			].flatten.map(&:to_s).join("\t")
 		end
 		teams_list = leagues.order(:order).map { |league| league.teams.sort_by(&:placement_criteria).reverse }.flatten + [OpenStruct.new(name: "Reserves")]
-		player_list.each_slice(3).zip(teams_list).map { |p,t| [t ? "# #{t.name}" : nil, p] }.flatten.compact
+		results_list = player_list.each_slice(3).zip(teams_list).map { |p,t| [t ? "# #{t.name}" : nil, p] }.flatten.compact
 	end
 end
