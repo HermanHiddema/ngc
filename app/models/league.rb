@@ -2,6 +2,7 @@ class League < ActiveRecord::Base
 	belongs_to :season
 	has_many :teams
 	has_many :matches
+	has_many :games, through: :matches
 
 	def make_pairing(weeks=nil)
 		weeks ||= 5.times.map { |i| Date.today.cweek + 2*(i+1) }
@@ -104,6 +105,51 @@ class League < ActiveRecord::Base
 		end
 	end
 
-# League.first.full_results.map { |team,matches| [Team.find(team).name] + matches.map {|match| "#{match.opponent(Team.find(team)).abbrev} #{match.result}" } }
+	def results
+		res = Hash.new
+		teams.sort_by(&:placement_criteria).reverse.each do |team|
+			team.team_members.includes(:participant).order(:board_number).map(&:participant).each do |participant|
+				res[participant.id] ||= Array.new
+			end
+		end
+		games.each do |game|
+			res[game.black_id] ||= Array.new
+			res[game.white_id] ||= Array.new
+			free = 0
+			free += 1 while res[game.black_id][free] || res[game.white_id][free]
+			res[game.black_id][free] = [game, game.white_id, game.black_result]
+			res[game.white_id][free] = [game, game.black_id, game.white_result]
+		end
+		res.each_with_index do |(pid,games), i|
+			games.each_with_index do |game, j|
+				if game.nil?
+					res[pid][j] = [nil, nil, '=', 0]
+				elsif game[0].forfeit?
+					res[game[1]][j] << 0
+				else
+					res[game[1]][j] << i+1
+				end
+			end
+		end
+		width = res.map { |k,v| v.length }.max
+		player_list = res.map.with_index do |(pid,games), i|
+			p = Participant.find(pid)
+			[
+				i+1, 
+				"%-30s" % [p.lastname, p.firstname].map(&:strip).join(' '),
+				p.rank,
+				"NL",
+				p.club.abbrev,
+				p.team_member.present? ? p.team_member.board_number : 0,
+				(100 * p.rating_change).to_s[0..5],
+				games.select { |game| "#{game[2]}" == '+' }.length,
+				games.map { |game| "#{game[3]}#{game[2]}" },
+				(games.length...width).map { "0=" }
+			].flatten.map(&:to_s).join("\t")
+		end
+		teams_list = teams.sort_by(&:placement_criteria).reverse + [OpenStruct.new(name: "Reserves")]
+		results_list = player_list.each_slice(3).zip(teams_list).map { |p,t| [t ? "; #{t.name}" : nil, p] }.flatten.compact
+	end
+
 
 end

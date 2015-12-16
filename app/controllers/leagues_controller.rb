@@ -11,6 +11,10 @@ class LeaguesController < ApplicationController
 		@participants = @participants.to_a.sort_by(&:rating_change).reverse
 		@teams = @league.teams
 		@matches = @league.matches.order(:playing_date, :playing_time)
+		respond_to do |format|
+			format.text { render text: @league.results.join("\n")}
+			format.html
+		end
 	end
 
 	def new
