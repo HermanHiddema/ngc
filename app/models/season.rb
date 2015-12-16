@@ -50,7 +50,7 @@ class Season < ActiveRecord::Base
 				"NL",
 				p.club.abbrev,
 				p.team_member.present? ? p.team_member.board_number : 0,
-				(100 * p.rating_change).to_s[0..5],
+				"%.2f" % (100 * p.rating_change),
 				games.select { |game| "#{game[2]}" == '+' }.length,
 				games.map { |game| "#{game[3]}#{game[2]}" },
 				(games.length...width).map { "0=" }
