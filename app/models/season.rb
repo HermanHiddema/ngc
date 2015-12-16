@@ -57,6 +57,6 @@ class Season < ActiveRecord::Base
 			].flatten.map(&:to_s).join("\t")
 		end
 		teams_list = leagues.order(:order).map { |league| league.teams.sort_by(&:placement_criteria).reverse }.flatten + [OpenStruct.new(name: "Reserves")]
-		results_list = player_list.each_slice(3).zip(teams_list).map { |p,t| [t ? "# #{t.name}" : nil, p] }.flatten.compact
+		results_list = player_list.each_slice(3).zip(teams_list).map { |p,t| [t ? "; #{t.name}" : nil, p] }.flatten.compact
 	end
 end
