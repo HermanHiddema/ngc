@@ -1,4 +1,4 @@
-- if @season.information
+- if @season.information.present?
 	%section
 		= markdown @season.information
 	%hr
