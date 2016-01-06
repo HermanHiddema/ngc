@@ -37,7 +37,7 @@
 						%li.has-dropdown
 							= link_to 'Archief', '#'
 							%ul.dropdown
-								- Season.all.each do |season|
+								- Season.all.order(created_at: 'DESC').each do |season|
 									%li= link_to season.name, "//#{season.slug}.gocompetitie.nl/"
 		.row
 			.small-12.columns
