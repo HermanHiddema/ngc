@@ -1,6 +1,6 @@
 class SeasonsController < ApplicationController
 	before_action :set_season, only: [:show, :edit, :update, :destroy]
-	before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
+	before_action :require_admin!, only: [:new, :create, :edit, :update, :destroy]
 	respond_to :text
 
 	def index
@@ -10,7 +10,7 @@ class SeasonsController < ApplicationController
 	def show
 		respond_with do |format|
 			format.text { render text: @season.results.join("\n") }
-			format.html { redirect_to season_leagues_url(@season) }
+			format.html { redirect_to leagues_url }
 		end
 	end
 
@@ -61,6 +61,6 @@ class SeasonsController < ApplicationController
 		end
 
 		def season_params
-			params.require(:season).permit(:name)
+			params.require(:season).permit(:name, :information)
 		end
 end

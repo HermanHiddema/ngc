@@ -1,5 +1,8 @@
+- if @season.information
+	%section
+		= markdown @season.information
+	%hr
 %h2 Stand #{@season.name}
-
 - @leagues.each_slice(2) do |league1,league2|
 	.row
 		.small-12.large-6.columns
