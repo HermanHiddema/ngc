@@ -89,7 +89,7 @@ class Season < ActiveRecord::Base
 	end
 
 	def create_leagues(amount=5)
-		num.times do |n|
+		amount.times do |n|
 			create_league(n)
 		end
 	end
