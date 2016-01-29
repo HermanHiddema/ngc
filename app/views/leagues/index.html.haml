@@ -7,7 +7,7 @@
 	.row
 		.small-12.large-6.columns
 			%h3= link_to league1.name, league1
-			= render partial: 'standings', locals: { league: league1 }
+			= render partial: 'standings', locals: { league: league1, :@fill_rows_upto => 6 }
 		- if league2
 			.small-12.large-6.columns
 				%h3= link_to league2.name, league2
