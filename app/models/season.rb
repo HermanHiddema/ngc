@@ -59,4 +59,58 @@ class Season < ActiveRecord::Base
 		teams_list = leagues.order(:order).map { |league| league.teams.sort_by(&:placement_criteria).reverse }.flatten + [OpenStruct.new(name: "Reserves")]
 		results_list = player_list.each_slice(3).zip(teams_list).map { |p,t| [t ? "; #{t.name}" : nil, p] }.flatten.compact
 	end
+
+	def upsert_players(json_file)
+		egd_json = File.read(json_file)
+		egd_data = JSON.load(egd_json)
+		egd_data['players'].each do |player|
+			club = Club.find_by(abbrev: player['Club']) || Club.create(name: player['Club'], abbrev: player['Club'])
+			person = Person.find_by(egd_pin: player['Pin_Player'])
+			if person
+				person.update_attributes(
+					rating: player['Gor'].to_i,
+					lastname: player['Real_Last_Name'],
+					firstname: player['Real_Name'],
+					club_id: club.id
+				)
+			else
+				person = Person.create(
+					egd_pin: player['Pin_Player'],
+					rating: player['Gor'].to_i,
+					lastname: player['Real_Last_Name'],
+					firstname: player['Real_Name'],
+					club_id: club.id
+				)
+			end
+			participant = Participant.new(person_id: person.id, season_id: self.id, rank: player['Grade'])
+			participant.copy_person_attributes
+			participant.save
+		end
+	end
+
+	def create_leagues(amount=5)
+		num.times do |n|
+			create_league(n)
+		end
+	end
+
+	def create_league(order)
+		League.create(name: league_name_for_order(order), order: order, season: self)
+	end
+
+	def league_name_for_order(order)
+		[
+			'Hoofdklasse', 
+			'Eerste klasse',
+			'Tweede klasse',
+			'Derde klasse',
+			'Vijfde klasse',
+			'Zesde klasse',
+			'Zevende klasse',
+			'Achtste klasse',
+			'Negende klasse',
+			'Tiende klasse'
+		][order]
+	end
+
 end
