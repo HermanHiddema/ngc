@@ -104,6 +104,7 @@ class Season < ActiveRecord::Base
 			'Eerste klasse',
 			'Tweede klasse',
 			'Derde klasse',
+			'Vierde klasse',
 			'Vijfde klasse',
 			'Zesde klasse',
 			'Zevende klasse',

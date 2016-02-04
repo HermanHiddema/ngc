@@ -20,6 +20,12 @@ class Game < ActiveRecord::Base
 		reason?
 	end
 
+	def swap_colors
+		black_points, white_points = white_points, black_points
+		black_player, white_player = white_player, black_player
+		save
+	end
+
 	def color_of(player)
 		return :black if black_player.id == player.id
 		return :white if white_player.id == player.id

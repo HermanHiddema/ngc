@@ -8,6 +8,8 @@ class Match < ActiveRecord::Base
 
 	accepts_nested_attributes_for :games
 
+	delegate :name, :address, :city, :club, :playing_time, :playing_day, to: :venue, prefix: true, allow_nil: true
+
 	after_create :fill_games
 
 	def fill_games
@@ -17,6 +19,12 @@ class Match < ActiveRecord::Base
 				games.create(board_number: black.board_number, black_player: black.participant, white_player: white.participant)
 			end
 		end
+	end
+
+	def swap_colors
+		black_team, white_team = white_team, black_team
+		games.map(&:swap_colors)
+		save
 	end
 
 	def self.find_by_teams(team1, team2)
