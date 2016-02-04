@@ -22,7 +22,7 @@ class Match < ActiveRecord::Base
 	end
 
 	def swap_colors
-		black_team, white_team = white_team, black_team
+		self.black_team, self.white_team = white_team, black_team
 		games.map(&:swap_colors)
 		save
 	end

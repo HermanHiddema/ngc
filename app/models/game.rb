@@ -21,8 +21,8 @@ class Game < ActiveRecord::Base
 	end
 
 	def swap_colors
-		black_points, white_points = white_points, black_points
-		black_player, white_player = white_player, black_player
+		self.black_points, self.white_points = white_points, black_points
+		self.black_player, self.white_player = white_player, black_player
 		save
 	end
 
