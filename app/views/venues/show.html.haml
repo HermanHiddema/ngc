@@ -1,6 +1,6 @@
 %h2 #{@venue.name} (#{@venue.address}, #{@venue.city})
 %section
-	Speelavond: Iedere
+	Speelavond:
 	= ['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'][@venue.playing_day]
 	om
 	= @venue.playing_time
