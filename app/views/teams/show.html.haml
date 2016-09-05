@@ -28,7 +28,7 @@
 %section
 	%h3 Teamleden
 	%p
-		- @team.team_members.each_with_index do |member, index|
+		- @team.team_members.joins(:participant).order('participants.rating DESC').each_with_index do |member, index|
 			.member
 				#{index+1}.
 				= link_to member.name, member.participant
