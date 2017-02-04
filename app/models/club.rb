@@ -5,5 +5,6 @@ class Club < ActiveRecord::Base
     belongs_to :contact_person, class_name: 'Person'
 	validates_presence_of :name
 
+	before_validation -> { self.name ||= abbrev }
 
 end

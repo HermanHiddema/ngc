@@ -9,7 +9,7 @@ class Participant < ActiveRecord::Base
 	has_many :white_games, class_name: 'Game', foreign_key: :white_id
 
 	def copy_person_attributes
-		self.assign_attributes(person.attributes.with_indifferent_access.slice(:club_id, :firstname, :lastname, :rating, :egd_pin))
+		self.assign_attributes(person.attributes.with_indifferent_access.slice(:club_id, :firstname, :lastname, :rating, :egd_pin, :rank))
 	end
 
 	def name
@@ -25,7 +25,7 @@ class Participant < ActiveRecord::Base
 	end
 
 	def played_games
-		games.where('black_points IS NOT NULL')
+		games.played
 	end
 
 	def rating_change

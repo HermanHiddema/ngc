@@ -64,25 +64,19 @@ class Season < ActiveRecord::Base
 		egd_json = File.read(json_file)
 		egd_data = JSON.load(egd_json)
 		egd_data['players'].each do |player|
-			club = Club.find_by(abbrev: player['Club']) || Club.create(name: player['Club'], abbrev: player['Club'])
-			person = Person.find_by(egd_pin: player['Pin_Player'])
-			if person
-				person.update_attributes(
-					rating: player['Gor'].to_i,
-					lastname: player['Real_Last_Name'],
-					firstname: player['Real_Name'],
-					club_id: club.id
-				)
-			else
-				person = Person.create(
-					egd_pin: player['Pin_Player'],
-					rating: player['Gor'].to_i,
-					lastname: player['Real_Last_Name'],
-					firstname: player['Real_Name'],
-					club_id: club.id
-				)
-			end
-			participant = Participant.new(person_id: person.id, season_id: self.id, rank: player['Grade'])
+			club = Club.find_or_create_by(abbrev: player['Club'])
+
+			person = Person.find_or_build_by(egd_pin: player['Pin_Player'])
+			person.update_attributes(
+				rating: player['Gor'].to_i,
+				rank: player['Grade'],
+				lastname: player['Real_Last_Name'],
+				firstname: player['Real_Name'],
+				club_id: club.id
+			)
+			person.save
+
+			participant = Participant.find_or_build_by(person_id: person.id, season_id: self.id)
 			participant.copy_person_attributes
 			participant.save
 		end

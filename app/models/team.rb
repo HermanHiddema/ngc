@@ -5,7 +5,7 @@ class Team < ActiveRecord::Base
 
 	has_many :black_matches, class_name: 'Match', foreign_key: :black_team_id
 	has_many :white_matches, class_name: 'Match', foreign_key: :white_team_id
-	has_many :team_members, validate: true
+	has_many :team_members, dependent: :destroy, validate: true
 	has_many :participants, through: :team_members
 	accepts_nested_attributes_for :team_members
 

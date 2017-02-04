@@ -6,10 +6,10 @@ class Game < ActiveRecord::Base
 	delegate :rating, to: :black_player, prefix: :black
 	delegate :rating, to: :white_player, prefix: :white
 
-	scope :played, ->{ where('black_points IS NOT NULL')}
+	scope :played, -> { where.not(black_points: nil, white_points: nil) }
 
 	def played?
-		@played ||= !black_points.nil? && !white_points.nil?
+		@played ||= black_points.present? && white_points.present?
 	end
 
 	def unplayed?
