@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :clubs
   resources :seasons
 
-  get 'club' => 'clubs#index'
+  get 'club', to:  redirect('/clubs')
 
   root to: 'leagues#index'
 
