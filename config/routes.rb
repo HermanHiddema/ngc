@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :clubs
   resources :seasons
 
+  match 'club' => 'clubs#index'
+
   root to: 'leagues#index'
 
 end
