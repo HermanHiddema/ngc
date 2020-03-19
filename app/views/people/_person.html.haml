@@ -1,8 +1,9 @@
 = person.firstname
 = person.lastname
-%br
-Email:
-= [person.email, person.email2].reject(&:blank?).join(' of ')
-%br
-Telefoon:
-= [person.phone, person.phone2].reject(&:blank?).join(' of ')
+- if current_user
+	%br
+	Email:
+	= [person.email, person.email2].reject(&:blank?).join(' of ')
+	%br
+	Telefoon:
+	= [person.phone, person.phone2].reject(&:blank?).join(' of ')
