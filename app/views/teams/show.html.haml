@@ -5,18 +5,18 @@
 	- if current_user
 		= link_to edit_person_path(@team.captain), title: 'Bewerken' do
 			= fa_icon 'pencil'
-	-if @team.captain.email
-		%br
-		%b Email:
-		= @team.captain.email
-		-if @team.captain.email2
-			of #{@team.captain.email2}
-	-if @team.captain.phone
-		%br
-		%b Telefoon:
-		= @team.captain.phone
-		-if @team.captain.phone2
-			of #{@team.captain.phone2}
+		-if @team.captain.email
+			%br
+			%b Email:
+			= @team.captain.email
+			-if @team.captain.email2
+				of #{@team.captain.email2}
+		-if @team.captain.phone
+			%br
+			%b Telefoon:
+			= @team.captain.phone
+			-if @team.captain.phone2
+				of #{@team.captain.phone2}
 	%br
 	%b Club:
 	= link_to @team.club.name, @team.club
