@@ -23,7 +23,7 @@ Venue.create(name: 'Alphen', club: alphen, playing_day: 2, playing_time: '19:45'
 Venue.create(name: 'Gouda', club: alphen, playing_day: 2, playing_time: '19:45')
 Venue.create(name: 'Zoetermeer', club: alphen, playing_day: 2, playing_time: '19:45')
 
-egd_json = File.read(Rails.root.join('netherlands-2015-2.json'))
+egd_json = File.read(Rails.root.join('netherlands-2022-2.json'))
 egd_data = JSON.load(egd_json)
 egd_data['players'].each do |player|
   club = Club.find_by(abbrev: player['Club']) || Club.create(name: player['Club'], abbrev: player['Club'])
