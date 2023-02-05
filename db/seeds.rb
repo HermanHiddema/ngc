@@ -43,7 +43,7 @@ egd_data['players'].each do |player|
       club_id: club.id
     )
   end
-  participant = Participant.new(person_id: person.id, season_id: 3, rank: player['Grade'])
+  participant = Participant.new(person_id: person.id, season_id: season.id, rank: player['Grade'])
   participant.copy_person_attributes
   participant.save
 end
