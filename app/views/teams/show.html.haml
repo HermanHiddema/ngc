@@ -28,7 +28,7 @@
 %section
 	%h3 Teamleden
 	%p
-		- @team.team_members.joins(:participant).order('participants.rating DESC').each_with_index do |member, index|
+		- @team.team_members.joins(:participant).order('team_member.board_number ASC').each_with_index do |member, index|
 			.member
 				#{index+1}.
 				= link_to member.name, member.participant
@@ -36,7 +36,7 @@
 %hr
 %section
 	%h3 Wedstrijden
-	= render collection: @matches, as: :match, partial: 'matches/match_details' 
+	= render collection: @matches, as: :match, partial: 'matches/match_details'
 
 - if current_user
 	%hr
